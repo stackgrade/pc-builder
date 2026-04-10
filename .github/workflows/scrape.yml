@@ -12,6 +12,8 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for git diff
       
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -22,17 +24,25 @@ jobs:
         run: |
           pip install curl_cffi
         
-      - name: Create data directory
-        run: mkdir -p data
-      
       - name: Run scraper
         run: python3 scripts/scrape_komplett_v2.py
+      
+      - name: Merge with metadata
+        run: |
+          # Backup current prices (with metadata) if not already backed up
+          if [ ! -f data/prices_mock.json ]; then
+            git show HEAD:data/prices.json > data/prices_mock.json
+          fi
+          # Copy scraped to temp
+          cp data/prices.json data/prices_scraped.json
+          # Restore mock with metadata
+          cp data/prices_mock.json data/prices.json
+          # Merge
+          python3 scripts/merge_prices.py
       
       - name: Check for changes
         id: git_status
         run: |
-          # git diff returns exit code 1 when there ARE changes (not 0)
-          # git diff returns exit code 0 when NO changes
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           
@@ -49,6 +59,7 @@ jobs:
       - name: Commit and push changes
         if: steps.git_status.outputs.changed == 'true'
         run: |
+          git add data/prices.json data/prices_scraped.json 2>/dev/null || true
           git add data/prices.json
           git commit -m "Auto-update prices $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
