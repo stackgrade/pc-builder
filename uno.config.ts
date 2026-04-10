@@ -5,7 +5,7 @@ export default defineConfig({
     presetUno(),
     presetWebFonts({
       fonts: {
-        sans: 'Inter:400,500,600,700',
+        sans: 'Inter:400,500,600,700,800,900',
       },
     }),
   ],
