@@ -1,66 +1,334 @@
 {
-  "updated": "2026-04-10T10:00:00.000Z",
-  "source": "mock",
+  "updated": "2026-04-10T13:55:09.226652+00:00",
+  "source": "komplett.se",
   "components": {
     "cpus": [
-      { "id": "amd-9800x3d", "name": "AMD Ryzen 9 9800X3D", "price": 5990, "retailer": "Komplett", "url": "#", "performance": 95, "performancePerKrona": 15.9, "socket": "AM5", "tdp": 120 },
-      { "id": "amd-9950x3d", "name": "AMD Ryzen 9 9950X3D", "price": 8990, "retailer": "Komplett", "url": "#", "performance": 98, "performancePerKrona": 10.9, "socket": "AM5", "tdp": 170 },
-      { "id": "amd-9600x", "name": "AMD Ryzen 5 9600X", "price": 2890, "retailer": "Komplett", "url": "#", "performance": 82, "performancePerKrona": 28.4, "socket": "AM5", "tdp": 65 },
-      { "id": "amd-7700x", "name": "AMD Ryzen 7 7700X", "price": 3290, "retailer": "Komplett", "url": "#", "performance": 78, "performancePerKrona": 23.7, "socket": "AM5", "tdp": 105 },
-      { "id": "intel-285k", "name": "Intel Core Ultra 9 285K", "price": 6990, "retailer": "CDON", "url": "#", "performance": 94, "performancePerKrona": 13.4, "socket": "LGA1851", "tdp": 125 },
-      { "id": "intel-265k", "name": "Intel Core Ultra 7 265K", "price": 4290, "retailer": "Webhallen", "url": "#", "performance": 88, "performancePerKrona": 20.5, "socket": "LGA1851", "tdp": 125 },
-      { "id": "intel-250k", "name": "Intel Core Ultra 5 250K", "price": 2890, "retailer": "Komplett", "url": "#", "performance": 75, "performancePerKrona": 25.9, "socket": "LGA1851", "tdp": 125 },
-      { "id": "amd-5600x", "name": "AMD Ryzen 5 5600X", "price": 1490, "retailer": "Komplett", "url": "#", "performance": 58, "performancePerKrona": 38.9, "socket": "AM4", "tdp": 65 },
-      { "id": "amd-3600", "name": "AMD Ryzen 5 3600", "price": 1190, "retailer": "CDON", "url": "#", "performance": 48, "performancePerKrona": 40.3, "socket": "AM4", "tdp": 65 }
+      {
+        "id": "1212165",
+        "name": "AMD Ryzen 7 5700X CPU",
+        "price": 1471,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1212165/"
+      },
+      {
+        "id": "1309692",
+        "name": "AMD Ryzen 5 9600X CPU",
+        "price": 1763,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1309692/"
+      },
+      {
+        "id": "1217404",
+        "name": "AMD Ryzen 7 7700X CPU",
+        "price": 2071,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1217404/"
+      },
+      {
+        "id": "1314008",
+        "name": "Intel Core Ultra 7 265KF CPU",
+        "price": 2392,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1314008/"
+      },
+      {
+        "id": "1309696",
+        "name": "AMD Ryzen 7 9700X CPU",
+        "price": 2551,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1309696/"
+      },
+      {
+        "id": "1314010",
+        "name": "Intel Core Ultra 7 265K CPU",
+        "price": 2711,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1314010/"
+      },
+      {
+        "id": "1309712",
+        "name": "AMD Ryzen 9 9900X CPU",
+        "price": 3159,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1309712/"
+      },
+      {
+        "id": "1315831",
+        "name": "AMD Ryzen 7 9800X3D CPU",
+        "price": 3169,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1315831/"
+      }
     ],
     "gpus": [
-      { "id": "rtx-5090", "name": "NVIDIA RTX 5090", "price": 24990, "retailer": "Komplett", "url": "#", "performance": 100, "performancePerKrona": 4.0 },
-      { "id": "rtx-5080", "name": "NVIDIA RTX 5080", "price": 12990, "retailer": "CDON", "url": "#", "performance": 90, "performancePerKrona": 6.9 },
-      { "id": "rtx-5070ti", "name": "NVIDIA RTX 5070 Ti", "price": 8990, "retailer": "Komplett", "url": "#", "performance": 85, "performancePerKrona": 9.5 },
-      { "id": "rtx-5070", "name": "NVIDIA RTX 5070", "price": 5990, "retailer": "Komplett", "url": "#", "performance": 78, "performancePerKrona": 13.0 },
-      { "id": "rx-9070xt", "name": "AMD RX 9070 XT", "price": 6990, "retailer": "Webhallen", "url": "#", "performance": 83, "performancePerKrona": 11.9 },
-      { "id": "rx-9070", "name": "AMD RX 9070", "price": 5490, "retailer": "CDON", "url": "#", "performance": 76, "performancePerKrona": 13.8 },
-      { "id": "arc-b580", "name": "Intel Arc B580", "price": 2390, "retailer": "Komplett", "url": "#", "performance": 72, "performancePerKrona": 30.1 },
-      { "id": "rx-6600", "name": "AMD RX 6600", "price": 1890, "retailer": "Komplett", "url": "#", "performance": 55, "performancePerKrona": 29.1 },
-      { "id": "rtx-4060", "name": "NVIDIA RTX 4060", "price": 2990, "retailer": "CDON", "url": "#", "performance": 62, "performancePerKrona": 20.7 }
+      {
+        "id": "1318735",
+        "name": "ASUS Prime AMD Radeon RX 9070 OC",
+        "price": 5272,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1318735/"
+      },
+      {
+        "id": "1319043",
+        "name": "Gigabyte AMD Radeon RX 9070 XT Gaming OC",
+        "price": 5512,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1319043/"
+      },
+      {
+        "id": "1324036",
+        "name": "Asus Dual GeForce RTX 5070 OC",
+        "price": 5599,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1324036/"
+      },
+      {
+        "id": "1318738",
+        "name": "ASUS Prime AMD Radeon RX 9070 XT OC",
+        "price": 5752,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1318738/"
+      },
+      {
+        "id": "1319438",
+        "name": "Gigabyte GeForce RTX 5070 WINDFORCE OC",
+        "price": 5831,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1319438/"
+      },
+      {
+        "id": "1319042",
+        "name": "Gigabyte AMD Radeon RX 9070 Gaming OC",
+        "price": 6552,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1319042/"
+      },
+      {
+        "id": "1319010",
+        "name": "Sapphire PULSE AMD Radeon RX 9070 XT Gaming",
+        "price": 6817,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1319010/"
+      },
+      {
+        "id": "1318736",
+        "name": "ASUS TUF Gaming AMD Radeon RX 9070 XT OC",
+        "price": 7192,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1318736/"
+      }
     ],
     "motherboards": [
-      { "id": "asus-x670e", "name": "ASUS ROG X670E Hero", "price": 5990, "retailer": "Komplett", "url": "#", "socket": "AM5", "formFactor": "ATX", "performance": 70 },
-      { "id": "msi-b650", "name": "MSI MAG B650 Tomahawk", "price": 1890, "retailer": "CDON", "url": "#", "socket": "AM5", "formFactor": "ATX", "performance": 65 },
-      { "id": "gigabyte-b850", "name": "Gigabyte B850 AORUS", "price": 2190, "retailer": "Webhallen", "url": "#", "socket": "AM5", "formFactor": "ATX", "performance": 72 },
-      { "id": "asus-z890", "name": "ASUS ROG Z890 Maximus", "price": 5990, "retailer": "Komplett", "url": "#", "socket": "LGA1851", "formFactor": "ATX", "performance": 75 },
-      { "id": "msi-z890", "name": "MSI MEG Z890 ACE", "price": 3890, "retailer": "CDON", "url": "#", "socket": "LGA1851", "formFactor": "ATX", "performance": 70 },
-      { "id": "msi-b450", "name": "MSI B450 Tomahawk", "price": 890, "retailer": "Komplett", "url": "#", "socket": "AM4", "formFactor": "ATX", "performance": 55 },
-      { "id": "asus-b550", "name": "ASUS TUF B550-Plus", "price": 1190, "retailer": "CDON", "url": "#", "socket": "AM4", "formFactor": "ATX", "performance": 60 }
+      {
+        "id": "1329389",
+        "name": "Gigabyte B650M GAMING WIFI6E Moderkort",
+        "price": 1007,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1329389/"
+      },
+      {
+        "id": "1335662",
+        "name": "ASRock B650 PG Lightning Moderkort -B-Grade",
+        "price": 1322,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1335662/"
+      },
+      {
+        "id": "1332152",
+        "name": "Gigabyte B860M DS3H WIFI6E moderkort",
+        "price": 1359,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1332152/"
+      },
+      {
+        "id": "1332162",
+        "name": "Gigabyte B860M GAMING X WIFI6E moderkort",
+        "price": 1519,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1332162/"
+      },
+      {
+        "id": "1330476",
+        "name": "Gigabyte B650E EAGLE WIFI6E Moderkort",
+        "price": 1679,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1330476/"
+      },
+      {
+        "id": "1332150",
+        "name": "Gigabyte B860M AORUS ELITE WIFI6E moderkort",
+        "price": 1839,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1332150/"
+      },
+      {
+        "id": "1242945",
+        "name": "ASUS ROG Strix B650E-E Gaming WIFI Moderkort -B-Grade",
+        "price": 2819,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1242945/"
+      },
+      {
+        "id": "1332431",
+        "name": "Asus ROG Crosshair X870E Hero BTF moderkort",
+        "price": 6649,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1332431/"
+      }
     ],
     "ram": [
-      { "id": "ddr5-32-6000", "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz", "price": 1190, "retailer": "Komplett", "url": "#", "ramType": "DDR5", "performance": 60 },
-      { "id": "ddr5-64-6000", "name": "Kingston Fury DDR5 64GB 6000MHz", "price": 2290, "retailer": "Webhallen", "url": "#", "ramType": "DDR5", "performance": 70 },
-      { "id": "ddr5-32-6400", "name": "Corsair Vengeance DDR5 32GB 6400MHz", "price": 1390, "retailer": "CDON", "url": "#", "ramType": "DDR5", "performance": 65 },
-      { "id": "ddr4-16-3600", "name": "G.Skill Aegis DDR4 16GB 3600MHz", "price": 490, "retailer": "Komplett", "url": "#", "ramType": "DDR4", "performance": 45 },
-      { "id": "ddr4-32-3600", "name": "Corsair Vengeance DDR4 32GB 3600MHz", "price": 890, "retailer": "CDON", "url": "#", "ramType": "DDR4", "performance": 55 }
+      {
+        "id": "1191392",
+        "name": "Kingston FURY Beast DDR4 3600MHz 32GB",
+        "price": 3112,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1191392/"
+      },
+      {
+        "id": "1332842",
+        "name": "Corsair Vengeance DDR5 6000MHz 32GB",
+        "price": 3592,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1332842/"
+      },
+      {
+        "id": "1311702",
+        "name": "Kingston FURY Beast RGB DDR5 6000MHz 32GB",
+        "price": 3592,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1311702/"
+      },
+      {
+        "id": "1332843",
+        "name": "Corsair Vengeance RGB DDR5 6000MHz 32GB",
+        "price": 3895,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1332843/"
+      },
+      {
+        "id": "1311703",
+        "name": "Kingston FURY Beast DDR5 6000MHz 32GB",
+        "price": 3992,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1311703/"
+      },
+      {
+        "id": "1139425",
+        "name": "G.Skill Trident Z Neo DDR4 3600Mhz 32GB",
+        "price": 4152,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1139425/"
+      },
+      {
+        "id": "1249824",
+        "name": "Kingston Fury Renegade DDR5 6400Mhz 32GB",
+        "price": 5399,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1249824/"
+      },
+      {
+        "id": "1324431",
+        "name": "Kingston ValueRam DDR5 6400MHz 32GB",
+        "price": 5592,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1324431/"
+      }
     ],
     "storage": [
-      { "id": "samsung-990pro-2tb", "name": "Samsung 990 Pro 2TB NVMe", "price": 1790, "retailer": "Komplett", "url": "#", "performance": 80 },
-      { "id": "wd-sn850x-1tb", "name": "WD Black SN850X 1TB NVMe", "price": 1190, "retailer": "CDON", "url": "#", "performance": 75 },
-      { "id": "crucial-p3-2tb", "name": "Crucial P3 Plus 2TB NVMe", "price": 1290, "retailer": "Webhallen", "url": "#", "performance": 65 },
-      { "id": "samsung-990pro-1tb", "name": "Samsung 990 Pro 1TB NVMe", "price": 1190, "retailer": "Komplett", "url": "#", "performance": 72 },
-      { "id": "wd-sn580-1tb", "name": "WD Blue SN580 1TB NVMe", "price": 690, "retailer": "Komplett", "url": "#", "performance": 55 }
+      {
+        "id": "1330363",
+        "name": "Sandisk WD Black SN7100 NVMe 2TB SSD",
+        "price": 2312,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1330363/"
+      },
+      {
+        "id": "1201336",
+        "name": "Kingston KC3000 M.2 2280 NVMe SSD 2TB",
+        "price": 2791,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1201336/"
+      },
+      {
+        "id": "1217368",
+        "name": "Sandisk WD Black SN850X NVMe SSD 2TB",
+        "price": 2952,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1217368/"
+      },
+      {
+        "id": "1324804",
+        "name": "Sandisk WD Green SN3000 NVMe SSD 2TB",
+        "price": 3119,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1324804/"
+      },
+      {
+        "id": "1330782",
+        "name": "Corsair MP700 Pro XT NVMe M.2 SSD 2TB",
+        "price": 3672,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1330782/"
+      },
+      {
+        "id": "1324396",
+        "name": "Kingston FURY Renegade G5 PCIe 5.0 NVMe M.2 SSD 2TB",
+        "price": 5839,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1324396/"
+      }
     ],
-    "cases": [
-      { "id": "fractal-define-7", "name": "Fractal Design Define 7", "price": 1190, "retailer": "Komplett", "url": "#", "formFactor": "ATX", "performance": 55 },
-      { "id": "lian-li-o11", "name": "Lian Li O11 Dynamic EVO", "price": 1390, "retailer": "CDON", "url": "#", "formFactor": "ATX", "performance": 60 },
-      { "id": "fractal-pop-air", "name": "Fractal Design Pop Air", "price": 899, "retailer": "Komplett", "url": "#", "formFactor": "ATX", "performance": 50 },
-      { "id": "coolermaster-q300l", "name": "Cooler Master Q300L V2", "price": 499, "retailer": "Komplett", "url": "#", "formFactor": "mATX", "performance": 40 },
-      { "id": "tecware-m2", "name": "TecWare Forge M2", "price": 399, "retailer": "CDON", "url": "#", "formFactor": "mATX", "performance": 35 }
-    ],
+    "cases": [],
     "psus": [
-      { "id": "corsair-rm1000x", "name": "Corsair RM1000x", "price": 1890, "retailer": "Komplett", "url": "#", "wattage": 1000, "performance": 75 },
-      { "id": "corsair-rm850x", "name": "Corsair RM850x", "price": 1290, "retailer": "Komplett", "url": "#", "wattage": 850, "performance": 70 },
-      { "id": "seasonic-focus-750", "name": "Seasonic Focus GX-750", "price": 1090, "retailer": "Webhallen", "url": "#", "wattage": 750, "performance": 65 },
-      { "id": "bequiet-650", "name": "be quiet! Straight Power 650W", "price": 899, "retailer": "CDON", "url": "#", "wattage": 650, "performance": 60 },
-      { "id": "evga-550", "name": "EVGA 550 BR", "price": 549, "retailer": "Komplett", "url": "#", "wattage": 550, "performance": 50 },
-      { "id": "seasonic-450", "name": "Seasonic Core GM-450", "price": 399, "retailer": "Webhallen", "url": "#", "wattage": 450, "performance": 45 }
+      {
+        "id": "1317197",
+        "name": "Corsair RMe Series RM1000e PSU (svart)",
+        "price": 1159,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1317197/"
+      },
+      {
+        "id": "1249746",
+        "name": "be quiet! PURE POWER 12 M | 650W",
+        "price": 1187,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1249746/"
+      },
+      {
+        "id": "1317195",
+        "name": "Corsair RMe Series RM850e PSU (svart)",
+        "price": 1199,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1317195/"
+      },
+      {
+        "id": "1322274",
+        "name": "Corsair RMe Series RM1000e PSU (vit)",
+        "price": 1512,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1322274/"
+      },
+      {
+        "id": "1309147",
+        "name": "Corsair RMx Series RM1000x PSU",
+        "price": 1919,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1309147/"
+      },
+      {
+        "id": "1309150",
+        "name": "Corsair RMx Series RM850x PSU",
+        "price": 3290,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1309150/"
+      },
+      {
+        "id": "1309146",
+        "name": "Corsair RMx Series RM750x PSU",
+        "price": 3290,
+        "retailer": "Komplett",
+        "url": "https://www.komplett.se/product/1309146/"
+      }
     ]
   }
 }
