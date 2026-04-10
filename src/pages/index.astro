@@ -4,158 +4,598 @@ import PriceData from '../../data/prices.json';
 
 const { components, updated } = PriceData;
 
-const bestCpu = [...components.cpus].sort((a, b) => b.performancePerKrona - a.performancePerKrona)[0];
-const bestGpu = [...components.gpus].sort((a, b) => b.performancePerKrona - a.performancePerKrona)[0];
+interface Component {
+  id: string;
+  name: string;
+  price: number;
+  retailer: string;
+  url: string;
+  performance?: number;
+  performancePerKrona?: number;
+  socket?: string;
+  ramType?: string;
+  wattage?: number;
+  formFactor?: string;
+  tdp?: number;
+}
 
-const topValue = {
-  cpus: [...components.cpus].sort((a, b) => b.performancePerKrona - a.performancePerKrona).slice(0, 3),
-  gpus: [...components.gpus].sort((a, b) => b.performancePerKrona - a.performancePerKrona).slice(0, 3),
+interface Build {
+  name: string;
+  totalPrice: number;
+  performancePerKrona: number;
+  performance: number;
+  components: {
+    cpu: Component;
+    gpu: Component;
+    ram: Component;
+    storage: Component;
+    motherboard: Component;
+    case: Component;
+    psu: Component;
+  };
+}
+
+const socketToRamType: Record<string, string> = {
+  'AM5': 'DDR5', 'LGA1851': 'DDR5', 'AM4': 'DDR4', 'LGA1700': 'DDR4',
 };
 
+const psuRecommendations: Record<string, number> = {
+  'NVIDIA RTX 5090': 1000, 'NVIDIA RTX 5080': 850, 'NVIDIA RTX 5070 Ti': 750,
+  'NVIDIA RTX 5070': 650, 'AMD RX 9070 XT': 750, 'AMD RX 9070': 650,
+  'AMD RX 6600': 550, 'NVIDIA RTX 4060': 650, 'Intel Arc B580': 650, 'default': 650,
+};
+
+function buildOptimalPC(maxBudget: number, components: typeof PriceData.components): Build | null {
+  const { cpus, gpus, motherboards, ram, storage, cases, psus } = components;
+  let bestBuild: Build | null = null;
+  let bestPerformance = 0;
+
+  for (const cpu of cpus as Component[]) {
+    for (const gpu of gpus as Component[]) {
+      const compatibleMotherboards = (motherboards as Component[]).filter(mb => mb.socket === cpu.socket);
+      if (!compatibleMotherboards.length) continue;
+      for (const mb of compatibleMotherboards) {
+        const neededRamType = socketToRamType[cpu.socket];
+        const compatibleRam = (ram as Component[]).filter(r => r.ramType === neededRamType);
+        if (!compatibleRam.length) continue;
+        for (const ramStick of compatibleRam) {
+          for (const ssd of storage as Component[]) {
+            for (const caseItem of cases as Component[]) {
+              const psuWatts = psuRecommendations[gpu.name] || 650;
+              const compatiblePSU = (psus as Component[]).find(p => (p.wattage || 0) >= psuWatts);
+              if (!compatiblePSU) continue;
+              const totalPrice = cpu.price + gpu.price + mb.price + ramStick.price + ssd.price + caseItem.price + compatiblePSU.price;
+              if (totalPrice > maxBudget * 1.03) continue;
+              const totalPerformance =
+                (cpu.performance || 0) * 0.25 + (gpu.performance || 0) * 0.45 +
+                (ramStick.performance || 50) * 0.08 + (ssd.performance || 50) * 0.07 +
+                (mb.performance || 50) * 0.10 + (compatiblePSU.performance || 50) * 0.05;
+              const perfPerKrona = Math.round((totalPerformance / totalPrice) * 1000 * 10) / 10;
+              if (totalPerformance > bestPerformance) {
+                bestPerformance = totalPerformance;
+                bestBuild = {
+                  name: getBuildName(maxBudget),
+                  totalPrice,
+                  performancePerKrona: perfPerKrona,
+                  performance: Math.round(totalPerformance),
+                  components: { cpu, gpu, ram: ramStick, storage: ssd, motherboard: mb, case: caseItem, psu: compatiblePSU },
+                };
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  return bestBuild;
+}
+
+function getBuildName(budget: number): string {
+  if (budget <= 7000) return 'Entry Level';
+  if (budget <= 10000) return 'Budget King';
+  if (budget <= 15000) return 'Mid-Range Beast';
+  return 'High-End Powerhouse';
+}
+
+const priceClasses = [7000, 10000, 15000, 20000];
+const builds = priceClasses.map(budget => buildOptimalPC(budget, components)).filter((b): b is Build => b !== null);
+const selectedBudget = parseInt(Astro.url.searchParams.get('budget') || '10000');
+const currentBuild = builds.find(b => b.totalPrice <= selectedBudget * 1.05 && b.totalPrice >= selectedBudget * 0.7) || builds.find(b => b) || null;
+
 const formatPrice = (price: number) => `${price.toLocaleString('sv-SE')} kr`;
-const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString('sv-SE', { 
-  day: 'numeric', 
-  month: 'short', 
-  hour: '2-digit', 
-  minute: '2-digit' 
-});
+const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' });
+
+const budgetLabels: Record<number, string> = { 7000: 'Entry', 10000: 'Budget', 15000: 'Mid', 20000: 'High-End' };
+const tierDescriptions: Record<number, string> = {
+  7000: 'För alla som börjar',
+  10000: 'Bästa spelupplevelsen',
+  15000: '1440p gaming, ingen kompromiss',
+  20000: '4K extreme performance',
+};
+
+// Performance tier colors
+const getPerfColor = (perf: number) => {
+  if (perf >= 7) return { bg: 'from-green-500/20 to-green-600/10', border: 'border-green-500/40', text: 'text-green-400', bar: 'bg-green-500' };
+  if (perf >= 5) return { bg: 'from-emerald-500/20 to-emerald-600/10', border: 'border-emerald-500/40', text: 'text-emerald-400', bar: 'bg-emerald-500' };
+  if (perf >= 3) return { bg: 'from-amber-500/20 to-amber-600/10', border: 'border-amber-500/40', text: 'text-amber-400', bar: 'bg-amber-500' };
+  return { bg: 'from-orange-500/20 to-orange-600/10', border: 'border-orange-500/40', text: 'text-orange-400', bar: 'bg-orange-500' };
+};
+
+const componentIcons: Record<string, string> = {
+  cpu: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z"/></svg>`,
+  gpu: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-6.75a2.25 2.25 0 012.25-2.25h18a2.25 2.25 0 012.25 2.25v6.75"/></svg>`,
+  ram: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 5.25h-16.5m16.5 0v10.5a2.25 2.25 0 01-2.25 2.25h-11.5a2.25 2.25 0 01-2.25-2.25V5.25m16.5 0v10.5a2.25 2.25 0 002.25 2.25h-11.5a2.25 2.25 0 00-2.25 2.25V5.25m16.5 0H3.75"/></svg>`,
+  storage: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 9a.75.75 0 00-.75.75v9a.75.75 0 00.75.75h19.5a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75H2.25zM2.25 6a.75.75 0 00-.75.75v6c0 .414.336.75.75.75h19.5a.75.75 0 00.75-.75V6.75A.75.75 0 0021.75 6H2.25z"/></svg>`,
+  motherboard: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5M4.5 15.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z"/></svg>`,
+  case: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>`,
+  psu: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>`,
+};
+
+const componentMeta: Record<string, { label: string; shortLabel: string }> = {
+  cpu: { label: 'Processor', shortLabel: 'CPU' },
+  gpu: { label: 'Grafikkort', shortLabel: 'GPU' },
+  ram: { label: 'Internminne', shortLabel: 'RAM' },
+  storage: { label: 'Lagring', shortLabel: 'SSD' },
+  motherboard: { label: 'Moderkort', shortLabel: 'MB' },
+  case: { label: 'Chassi', shortLabel: 'CASE' },
+  psu: { label: 'Nätaggregat', shortLabel: 'PSU' },
+};
 ---
 
-<Layout title="PC Builder SE - Bäst pris per krona">
-  <main class="max-w-4xl mx-auto px-4 py-8">
-    <header class="text-center mb-12">
-      <h1 class="text-4xl font-extrabold mb-2">
-        PC Builder <span class="text-accent">SE</span>
+<Layout title="PC Builder SE — Bäst pris per krona">
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(34,197,94,0.3); }
+      50% { box-shadow: 0 0 40px rgba(34,197,94,0.5); }
+    }
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-float { animation: float 4s ease-in-out infinite; }
+    .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+    .animate-gradient {
+      background-size: 200% 200%;
+      animation: gradient-shift 4s ease infinite;
+    }
+    .glass {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .glass-strong {
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .card-hover {
+      transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+    .tier-btn {
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      position: relative;
+      overflow: hidden;
+    }
+    .tier-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(34,197,94,0.1) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .tier-btn:hover::before { opacity: 1; }
+    .tier-btn:hover { transform: translateY(-2px); border-color: rgba(34,197,94,0.4); }
+    .tier-btn.active {
+      border-color: rgba(34,197,94,0.6);
+      box-shadow: 0 0 30px rgba(34,197,94,0.2), inset 0 0 30px rgba(34,197,94,0.05);
+    }
+    .tier-btn.active::before { opacity: 1; }
+    .perf-ring {
+      background: conic-gradient(var(--accent-color) calc(var(--perf-pct) * 1%), rgba(255,255,255,0.08) 0%);
+      border-radius: 50%;
+    }
+    .perf-inner { background: radial-gradient(circle at center, #0a0a0b 0%, #080808 100%); border-radius: 50%; }
+    .retailer-btn {
+      background: linear-gradient(135deg, rgba(34,197,94,0.15) 0%, rgba(34,197,94,0.05) 100%);
+      border: 1px solid rgba(34,197,94,0.3);
+      transition: all 0.25s;
+    }
+    .retailer-btn:hover {
+      background: linear-gradient(135deg, rgba(34,197,94,0.25) 0%, rgba(34,197,94,0.1) 100%);
+      border-color: rgba(34,197,94,0.5);
+      transform: scale(1.02);
+    }
+    .summary-card {
+      background: linear-gradient(145deg, rgba(20,20,20,0.9) 0%, rgba(10,10,10,0.95) 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+    .summary-card:hover {
+      border-color: rgba(34,197,94,0.3);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    }
+    .summary-card.active {
+      border-color: rgba(34,197,94,0.4);
+      background: linear-gradient(145deg, rgba(20,30,20,0.95) 0%, rgba(10,20,10,0.98) 100%);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #fff 0%, #22c55e 50%, #4ade80 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-gradient {
+      background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34,197,94,0.15) 0%, transparent 60%);
+    }
+    .build-card {
+      background: linear-gradient(145deg, rgba(15,15,15,0.95) 0%, rgba(5,5,5,0.98) 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 24px;
+      position: relative;
+    }
+    .build-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(34,197,94,0.3), transparent);
+    }
+    .component-card {
+      background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      transition: all 0.3s;
+    }
+    .component-card:hover {
+      border-color: rgba(34,197,94,0.3);
+      background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+    }
+    .perf-bar {
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.1);
+      overflow: hidden;
+    }
+    .perf-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+    }
+    .icon-container {
+      background: linear-gradient(135deg, rgba(34,197,94,0.2) 0%, rgba(34,197,94,0.05) 100%);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 12px;
+    }
+    .stat-card {
+      background: linear-gradient(145deg, rgba(30,30,30,0.8) 0%, rgba(20,20,20,0.9) 100%);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+    }
+    .live-dot {
+      animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.1); }
+    }
+  </style>
+
+  <main class="max-w-6xl mx-auto px-5 py-8">
+
+    <!-- HERO SECTION -->
+    <header class="text-center mb-12 relative">
+      <div class="hero-gradient absolute inset-0 -z-10"></div>
+      
+      <!-- Live badge -->
+      <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/30 mb-8">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="live-dot absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+        </span>
+        <span class="text-xs text-green-400 font-semibold tracking-wide">LIVE PRISER</span>
+      </div>
+
+      <!-- Main title -->
+      <h1 class="text-5xl md:text-6xl font-black mb-4 tracking-tight">
+        <span class="gradient-text">PC BUILDER</span>
+        <span class="text-white/90"> SE</span>
       </h1>
-      <p class="text-gray-400 text-lg">Hitta bästa prestanda per krona för din nästa dator</p>
-      <p class="text-gray-600 text-sm mt-2">Priser uppdaterade: {formatDate(updated)}</p>
+      
+      <p class="text-lg text-white/50 font-light max-w-xl mx-auto mb-4">
+        Automatisk optimering — högsta prestanda per krona
+      </p>
+      
+      <!-- Update info -->
+      <div class="flex items-center justify-center gap-2 text-sm text-white/30">
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <span>Uppdaterades {formatDate(updated)}</span>
+        <span class="text-white/20">•</span>
+        <span>Svenska priser</span>
+      </div>
     </header>
 
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
-      <div class="bg-gradient-to-br from-blue-900/50 to-dark border border-accent/30 rounded-2xl p-6 relative">
-        <span class="inline-block px-3 py-1 bg-accent/20 text-accent text-xs font-semibold rounded-full mb-3">🏆 BÄST PRIS/KRONA</span>
-        <h2 class="text-xl font-bold mb-4">{bestCpu.name}</h2>
-        <div class="flex gap-4 mb-4">
-          <span class="text-2xl font-bold">{formatPrice(bestCpu.price)}</span>
-          <span class="text-gray-400 self-center">{bestCpu.performance} poäng</span>
-        </div>
-        <div class="text-center bg-black/30 rounded-lg p-4">
-          <span class="block text-4xl font-extrabold text-accent">{bestCpu.performancePerKrona}</span>
-          <span class="text-gray-500 text-xs">prestanda per 1000 kr</span>
-        </div>
-      </div>
-
-      <div class="bg-gradient-to-br from-amber-900/30 to-dark border border-amber-500/30 rounded-2xl p-6 relative">
-        <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-3">🎮 BÄST GRAFIK</span>
-        <h2 class="text-xl font-bold mb-4">{bestGpu.name}</h2>
-        <div class="flex gap-4 mb-4">
-          <span class="text-2xl font-bold">{formatPrice(bestGpu.price)}</span>
-          <span class="text-gray-400 self-center">{bestGpu.performance} poäng</span>
-        </div>
-        <div class="text-center bg-black/30 rounded-lg p-4">
-          <span class="block text-4xl font-extrabold text-amber-400">{bestGpu.performancePerKrona}</span>
-          <span class="text-gray-500 text-xs">prestanda per 1000 kr</span>
-        </div>
+    <!-- STATS BAR -->
+    <section class="mb-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        {builds.slice(0, 4).map((build, i) => {
+          const colors = getPerfColor(build.performancePerKrona);
+          return (
+            <a href={`?budget=${priceClasses[i]}`} 
+               class={`stat-card p-4 text-center card-hover ${currentBuild && Math.abs(build.totalPrice - currentBuild.totalPrice) < 500 ? 'ring-1 ring-green-500/30' : ''}`}>
+              <div class={`text-2xl font-black ${colors.text} mb-1`}>
+                {build.performancePerKrona}
+              </div>
+              <div class="text-xs text-white/40 uppercase tracking-wider mb-2">per 1000 kr</div>
+              <div class="perf-bar">
+                <div class={`perf-bar-fill ${colors.bar}`} style={`width: ${Math.min(build.performancePerKrona * 12, 100)}%`}></div>
+              </div>
+              <div class="text-sm font-semibold text-white/80 mt-2">{formatPrice(build.totalPrice)}</div>
+            </a>
+          );
+        })}
       </div>
     </section>
 
-    <section class="mb-12">
-      <h3 class="text-xl font-bold mb-4">Utforska komponenter</h3>
-      <div class="grid grid-cols-3 md:grid-cols-6 gap-3">
-        <a href="#cpus" class="bg-card border border-border rounded-xl p-4 text-center hover:border-accent hover:-translate-y-1 transition-all cursor-pointer">
-          <span class="text-2xl block mb-1">⚡</span>
-          <span class="text-sm font-medium block">Processorer</span>
-          <span class="text-xs text-gray-500">{components.cpus.length} artiklar</span>
-        </a>
-        <a href="#gpus" class="bg-card border border-border rounded-xl p-4 text-center hover:border-accent hover:-translate-y-1 transition-all cursor-pointer">
-          <span class="text-2xl block mb-1">🎮</span>
-          <span class="text-sm font-medium block">Grafikkort</span>
-          <span class="text-xs text-gray-500">{components.gpus.length} artiklar</span>
-        </a>
-        <a href="#motherboards" class="bg-card border border-border rounded-xl p-4 text-center hover:border-accent hover:-translate-y-1 transition-all cursor-pointer">
-          <span class="text-2xl block mb-1">🔌</span>
-          <span class="text-sm font-medium block">Moderkort</span>
-          <span class="text-xs text-gray-500">{components.motherboards.length} artiklar</span>
-        </a>
-        <a href="#ram" class="bg-card border border-border rounded-xl p-4 text-center hover:border-accent hover:-translate-y-1 transition-all cursor-pointer">
-          <span class="text-2xl block mb-1">💾</span>
-          <span class="text-sm font-medium block">Internminne</span>
-          <span class="text-xs text-gray-500">{components.ram.length} artiklar</span>
-        </a>
-        <a href="#storage" class="bg-card border border-border rounded-xl p-4 text-center hover:border-accent hover:-translate-y-1 transition-all cursor-pointer">
-          <span class="text-2xl block mb-1">💿</span>
-          <span class="text-sm font-medium block">Lagring</span>
-          <span class="text-xs text-gray-500">{components.storage.length} artiklar</span>
-        </a>
-        <a href="#cases" class="bg-card border border-border rounded-xl p-4 text-center hover:border-accent hover:-translate-y-1 transition-all cursor-pointer">
-          <span class="text-2xl block mb-1">📦</span>
-          <span class="text-sm font-medium block">Chassin</span>
-          <span class="text-xs text-gray-500">{components.cases.length} artiklar</span>
-        </a>
+    <!-- BUDGET TIER SELECTOR -->
+    <section class="mb-10">
+      <div class="flex justify-between items-end mb-5">
+        <div>
+          <p class="text-xs text-white/40 uppercase tracking-widest mb-1">Välj din budget</p>
+          <h2 class="text-2xl font-bold text-white">Konfigurera din build</h2>
+        </div>
+        <span class="text-sm text-white/30 hidden md:block">4 prissegment</span>
       </div>
-    </section>
 
-    <section id="cpus" class="mb-8">
-      <h3 class="text-xl font-bold mb-4">⚡ Processorer</h3>
-      <div class="flex flex-col gap-3">
-        {topValue.cpus.map((cpu, i) => (
-          <div class={`bg-card border rounded-xl p-4 relative ${i === 0 ? 'border-accent/50 bg-gradient-to-r from-card to-green-900/20' : 'border-border'}`}>
-            {i === 0 && <span class="absolute -top-2 right-4 bg-accent text-black text-xs font-bold px-2 py-0.5 rounded">TOP VAL</span>}
-            <div class="flex justify-between items-center mb-3">
-              <h4 class="font-semibold">{cpu.name}</h4>
-              <span class="text-xs text-gray-500">{cpu.retailer}</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div class="text-xl font-bold">{formatPrice(cpu.price)}</div>
-              <div class="flex gap-6">
-                <div class="text-center">
-                  <span class="block text-lg font-bold">{cpu.performance}</span>
-                  <span class="text-xs text-gray-500">Prestanda</span>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {priceClasses.map((budget, i) => {
+          const build = builds[i];
+          const isSelected = currentBuild && build && Math.abs(build.totalPrice - currentBuild.totalPrice) < 500;
+          const colors = build ? getPerfColor(build.performancePerKrona) : null;
+          return (
+            <a href={`?budget=${budget}`}
+              class={`tier-btn rounded-2xl p-5 border ${isSelected ? 'active glass-strong' : 'glass border-white/10'}`}
+            >
+              <div class="flex items-start justify-between mb-4">
+                <div>
+                  <span class={`block text-3xl font-black ${isSelected ? 'text-green-400' : 'text-white'}`}>
+                    {(budget / 1000).toFixed(0)}k
+                  </span>
+                  <span class="text-sm text-white/50 font-medium">kr</span>
                 </div>
-                <div class="text-center">
-                  <span class="block text-lg font-bold text-accent">{cpu.performancePerKrona}</span>
-                  <span class="text-xs text-gray-500">per 1000 kr</span>
+                {build && (
+                  <div class={`text-right ${isSelected ? 'text-green-400' : 'text-white/30'}`}>
+                    <div class="text-xl font-bold">{build.performancePerKrona}</div>
+                    <div class="text-xs text-white/40">/ 1000 kr</div>
+                  </div>
+                )}
+              </div>
+              
+              <div class={`text-sm font-semibold mb-1 ${isSelected ? 'text-green-400' : 'text-white/70'}`}>
+                {budgetLabels[budget]}
+              </div>
+              <div class="text-xs text-white/30 leading-snug">
+                {tierDescriptions[budget]}
+              </div>
+
+              {build && (
+                <div class={`mt-4 pt-4 border-t ${isSelected ? 'border-green-500/30' : 'border-white/06'}`}>
+                  <div class="flex items-center justify-between">
+                    <span class={`text-xs ${isSelected ? 'text-green-400' : 'text-white/40'}`}>
+                      Total build
+                    </span>
+                    <span class="text-sm font-bold text-white/80">
+                      {formatPrice(build.totalPrice)}
+                    </span>
+                  </div>
+                  <div class="perf-bar mt-2">
+                    <div class={`perf-bar-fill ${colors?.bar}`} style={`width: ${Math.min((build.performancePerKrona / 8) * 100, 100)}%`}></div>
+                  </div>
+                </div>
+              )}
+            </a>
+          );
+        })}
+      </div>
+    </section>
+
+    <!-- MAIN BUILD DISPLAY -->
+    {currentBuild && (
+      <section class="mb-10">
+        <div class="build-card p-6 lg:p-8">
+          <!-- Build header -->
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-6">
+            <div class="flex items-center gap-5">
+              <!-- Performance Ring -->
+              <div class="relative w-24 h-24 flex-shrink-0 animate-float">
+                <div class="perf-ring w-24 h-24 flex items-center justify-center animate-pulse-glow" 
+                     style={`--perf-pct: ${currentBuild.performancePerKrona * 10}; --accent-color: #22c55e`}>
+                  <div class="perf-inner w-18 h-18 w-[72px] h-[72px] flex items-center justify-center flex-col">
+                    <span class="text-3xl font-black text-green-400">{currentBuild.performancePerKrona}</span>
+                    <span class="text-[10px] text-white/40 uppercase tracking-wider">/kr</span>
+                  </div>
                 </div>
               </div>
-              <a href={cpu.url} class="bg-gray-800 hover:bg-accent hover:text-black text-sm font-medium px-4 py-2 rounded-lg transition-colors">Se pris →</a>
+              
+              <div>
+                <p class="text-xs text-green-400/70 uppercase tracking-widest mb-1">Din build</p>
+                <h2 class="text-3xl lg:text-4xl font-black text-white">{currentBuild.name}</h2>
+                <p class="text-white/40 text-sm mt-1">{tierDescriptions[priceClasses.find((_, i) => builds[i] && Math.abs(builds[i].totalPrice - currentBuild.totalPrice) < 500) || 10000]}</p>
+              </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="flex gap-6 lg:gap-8">
+              <div class="text-center">
+                <div class="text-3xl font-black text-white">{formatPrice(currentBuild.totalPrice)}</div>
+                <div class="text-xs text-white/40 uppercase tracking-wider mt-1">Totalpris</div>
+              </div>
+              <div class="w-px bg-white/10"></div>
+              <div class="text-center">
+                <div class="text-3xl font-black text-green-400">{currentBuild.performance}</div>
+                <div class="text-xs text-white/40 uppercase tracking-wider mt-1">Poäng</div>
+              </div>
+              <div class="w-px bg-white/10"></div>
+              <div class="text-center">
+                <div class="text-3xl font-black text-white/80">{currentBuild.performancePerKrona}</div>
+                <div class="text-xs text-white/40 uppercase tracking-wider mt-1">Per 1000kr</div>
+              </div>
             </div>
           </div>
-        ))}
-      </div>
-    </section>
 
-    <section id="gpus" class="mb-8">
-      <h3 class="text-xl font-bold mb-4">🎮 Grafikkort</h3>
-      <div class="flex flex-col gap-3">
-        {topValue.gpus.map((gpu, i) => (
-          <div class={`bg-card border rounded-xl p-4 relative ${i === 0 ? 'border-amber-500/50 bg-gradient-to-r from-card to-amber-900/20' : 'border-border'}`}>
-            {i === 0 && <span class="absolute -top-2 right-4 bg-amber-400 text-black text-xs font-bold px-2 py-0.5 rounded">TOP VAL</span>}
-            <div class="flex justify-between items-center mb-3">
-              <h4 class="font-semibold">{gpu.name}</h4>
-              <span class="text-xs text-gray-500">{gpu.retailer}</span>
-            </div>
-            <div class="flex justify-between items-center">
-              <div class="text-xl font-bold">{formatPrice(gpu.price)}</div>
-              <div class="flex gap-6">
-                <div class="text-center">
-                  <span class="block text-lg font-bold">{gpu.performance}</span>
-                  <span class="text-xs text-gray-500">Prestanda</span>
+          <!-- Component grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+            {Object.entries(currentBuild.components).map(([key, comp]) => {
+              const meta = componentMeta[key] || { label: key, shortLabel: key };
+              const icon = componentIcons[key] || componentIcons.cpu;
+              return (
+                <div class="component-card p-4 group">
+                  <div class="flex items-center gap-3 mb-3">
+                    <div class="icon-container w-10 h-10 flex items-center justify-center text-green-400 group-hover:scale-110 transition-transform">
+                      <Fragment set:html={icon} />
+                    </div>
+                    <div>
+                      <span class="text-xs text-green-400/60 font-semibold uppercase tracking-wider">{meta.shortLabel}</span>
+                      <div class="text-lg font-bold text-white">{formatPrice(comp.price)}</div>
+                    </div>
+                  </div>
+                  <p class="text-sm font-medium text-white/90 mb-3 leading-snug">{comp.name}</p>
+                  <a
+                    href={comp.url}
+                    target="_blank"
+                    rel="noopener"
+                    class="retailer-btn inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg text-green-400"
+                  >
+                    <span>{comp.retailer}</span>
+                    <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/>
+                    </svg>
+                  </a>
                 </div>
-                <div class="text-center">
-                  <span class="block text-lg font-bold text-amber-400">{gpu.performancePerKrona}</span>
-                  <span class="text-xs text-gray-500">per 1000 kr</span>
+              );
+            })}
+          </div>
+
+          <!-- Compatibility badge -->
+          <div class="flex items-center justify-center gap-3 pt-6 border-t border-white/06">
+            <div class="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center">
+              <svg class="w-3.5 h-3.5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+              </svg>
+            </div>
+            <span class="text-sm text-white/50">Alla komponenter är kompatibla och optimerade för denna build</span>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- ALL BUILDS GRID -->
+    <section class="mb-10">
+      <div class="flex items-center justify-between mb-5">
+        <h3 class="text-lg font-bold text-white">Alla prissegment</h3>
+        <span class="text-xs text-white/30">Klicka för att byta</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {priceClasses.map((budget, i) => {
+          const build = builds[i];
+          if (!build) return null;
+          const isCurrent = currentBuild && Math.abs(build.totalPrice - currentBuild.totalPrice) < 500;
+          const colors = getPerfColor(build.performancePerKrona);
+          return (
+            <a href={`?budget=${budget}`} 
+               class={`summary-card p-5 block ${isCurrent ? 'active' : ''}`}>
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <span class="text-xs text-white/40 uppercase tracking-wider">{budgetLabels[budget]}</span>
+                  <div class="text-lg font-bold text-white mt-0.5">{build.name}</div>
+                </div>
+                <div class={`text-right ${isCurrent ? 'text-green-400' : 'text-white/30'}`}>
+                  <div class="font-black text-xl">{build.performancePerKrona}</div>
+                  <div class="text-xs text-white/40">/ 1000 kr</div>
                 </div>
               </div>
-              <a href={gpu.url} class="bg-gray-800 hover:bg-amber-400 hover:text-black text-sm font-medium px-4 py-2 rounded-lg transition-colors">Se pris →</a>
-            </div>
-          </div>
-        ))}
+              
+              <div class="flex gap-2 text-xs mb-4">
+                <span class="text-white/50 bg-white/5 px-2 py-1 rounded-md">{build.components.cpu.name.split(' ').slice(-2).join(' ')}</span>
+                <span class="text-white/30">+</span>
+                <span class="text-white/50 bg-white/5 px-2 py-1 rounded-md">{build.components.gpu.name.split(' ').slice(-2).join(' ')}</span>
+              </div>
+
+              <div class="perf-bar mb-3">
+                <div class={`perf-bar-fill ${colors.bar}`} style={`width: ${Math.min((build.performancePerKrona / 8) * 100, 100)}%`}></div>
+              </div>
+              
+              <div class="flex justify-between items-center pt-3 border-t border-white/06">
+                <span class="font-bold text-white text-lg">{formatPrice(build.totalPrice)}</span>
+                <span class="text-xs text-white/40">{build.performance} poäng</span>
+              </div>
+            </a>
+          );
+        })}
       </div>
     </section>
 
-    <footer class="text-center py-8 border-t border-border text-gray-500 text-sm">
-      <p>Data från svenska återförsäljare • Priser uppdateras var 6:e timme</p>
-      <p class="mt-1 text-xs">Inget binds, alla priser är cirkapris. Kontrollera alltid hos återförsäljare.</p>
+    <!-- HOW IT WORKS -->
+    <section class="mb-10">
+      <div class="glass rounded-2xl p-6 lg:p-8">
+        <div class="flex items-start gap-5">
+          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-600/10 border border-green-500/20 flex items-center justify-center flex-shrink-0">
+            <svg class="w-7 h-7 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19 14.5m-9.25-3.104c.251.023.501.05.75.082M19 14.5l-3.09-3.09m3.09 3.09L14.91 14.91"/>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-bold text-white mb-2">Så fungerar optimeringen</h3>
+            <p class="text-white/50 text-sm leading-relaxed mb-4">
+              Algoritmen scannar tusentals komponentkombinationer och väljer den med högst totalprestanda per krona.
+              GPU viktas 45%, CPU 25%, övriga komponenter 30%. Kompatibilitet (socket, RAM-typ, PSU-krav) garanteras alltid.
+            </p>
+            
+            <!-- Weight visualization -->
+            <div class="flex flex-wrap gap-3">
+              <div class="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-lg">
+                <div class="w-8 h-1.5 rounded-full bg-gradient-to-r from-green-500 to-green-400"></div>
+                <span class="text-xs text-white/60">GPU <span class="text-white/80 font-medium">45%</span></span>
+              </div>
+              <div class="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-lg">
+                <div class="w-5 h-1.5 rounded-full bg-gradient-to-r from-green-500/70 to-green-400/70"></div>
+                <span class="text-xs text-white/60">CPU <span class="text-white/80 font-medium">25%</span></span>
+              </div>
+              <div class="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-lg">
+                <div class="w-4 h-1.5 rounded-full bg-gradient-to-r from-green-500/50 to-green-400/50"></div>
+                <span class="text-xs text-white/60">Övrigt <span class="text-white/80 font-medium">30%</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="text-center py-8 border-t border-white/06">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <div class="w-8 h-8 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+          <svg class="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
+          </svg>
+        </div>
+        <span class="text-sm text-white/40">Priser från svenska återförsäljare</span>
+      </div>
+      <p class="text-xs text-white/25">Uppdateras automatiskt via GitHub Actions • Inget binds</p>
     </footer>
   </main>
 </Layout>
