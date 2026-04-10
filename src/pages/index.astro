@@ -1,0 +1,452 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PriceData from '../../data/prices.json';
+
+const { components, updated } = PriceData;
+
+// Calculate best value items (highest performance per krona)
+const bestCpu = [...components.cpus].sort((a, b) => b.performancePerKrona - a.performancePerKrona)[0];
+const bestGpu = [...components.gpus].sort((a, b) => b.performancePerKrona - a.performancePerKrona)[0];
+
+// Get top 3 best value per category
+const topValue = {
+  cpus: [...components.cpus].sort((a, b) => b.performancePerKrona - a.performancePerKrona).slice(0, 3),
+  gpus: [...components.gpus].sort((a, b) => b.performancePerKrona - a.performancePerKrona).slice(0, 3),
+};
+
+const formatPrice = (price: number) => `${price.toLocaleString('sv-SE')} kr`;
+const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString('sv-SE', { 
+  day: 'numeric', 
+  month: 'short', 
+  hour: '2-digit', 
+  minute: '2-digit' 
+});
+---
+
+<Layout title="PC Builder SE - Bäst pris per krona">
+  <main>
+    <header>
+      <h1>PC Builder <span class="accent">SE</span></h1>
+      <p class="tagline">Hitta bästa prestanda per krona för din nästa dator</p>
+      <p class="updated">Priser uppdaterade: {formatDate(updated)}</p>
+    </header>
+
+    <section class="hero">
+      <div class="best-value-card">
+        <span class="badge">🏆 BÄST PRIS/KRONA</span>
+        <h2>{bestCpu.name}</h2>
+        <div class="specs">
+          <span class="price">{formatPrice(bestCpu.price)}</span>
+          <span class="performance">{bestCpu.performance} poäng</span>
+        </div>
+        <div class="value-score">
+          <span class="big-number">{bestCpu.performancePerKrona}</span>
+          <span class="label">prestanda per 1000 kr</span>
+        </div>
+      </div>
+
+      <div class="best-value-card gpu">
+        <span class="badge">🎮 BÄST GRAFIK</span>
+        <h2>{bestGpu.name}</h2>
+        <div class="specs">
+          <span class="price">{formatPrice(bestGpu.price)}</span>
+          <span class="performance">{bestGpu.performance} poäng</span>
+        </div>
+        <div class="value-score">
+          <span class="big-number">{bestGpu.performancePerKrona}</span>
+          <span class="label">prestanda per 1000 kr</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="categories">
+      <h3>Utforska komponenter</h3>
+      <div class="category-grid">
+        <a href="#cpus" class="category-card">
+          <span class="icon">⚡</span>
+          <span class="name">Processorer</span>
+          <span class="count">{components.cpus.length} artiklar</span>
+        </a>
+        <a href="#gpus" class="category-card">
+          <span class="icon">🎮</span>
+          <span class="name">Grafikkort</span>
+          <span class="count">{components.gpus.length} artiklar</span>
+        </a>
+        <a href="#motherboards" class="category-card">
+          <span class="icon">🔌</span>
+          <span class="name">Moderkort</span>
+          <span class="count">{components.motherboards.length} artiklar</span>
+        </a>
+        <a href="#ram" class="category-card">
+          <span class="icon">💾</span>
+          <span class="name">Internminne</span>
+          <span class="count">{components.ram.length} artiklar</span>
+        </a>
+        <a href="#storage" class="category-card">
+          <span class="icon">💿</span>
+          <span class="name">Lagring</span>
+          <span class="count">{components.storage.length} artiklar</span>
+        </a>
+        <a href="#cases" class="category-card">
+          <span class="icon">📦</span>
+          <span class="name">Chassin</span>
+          <span class="count">{components.cases.length} artiklar</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="cpus" class="component-section">
+      <h3>⚡ Processorer</h3>
+      <div class="component-list">
+        {topValue.cpus.map((cpu, i) => (
+          <div class={`component-card ${i === 0 ? 'top-pick' : ''}`}>
+            {i === 0 && <span class="top-badge">TOP VAL</span>}
+            <div class="card-header">
+              <h4>{cpu.name}</h4>
+              <span class="retailer">{cpu.retailer}</span>
+            </div>
+            <div class="card-body">
+              <div class="price">{formatPrice(cpu.price)}</div>
+              <div class="metrics">
+                <div class="metric">
+                  <span class="value">{cpu.performance}</span>
+                  <span class="label">Prestanda</span>
+                </div>
+                <div class="metric highlight">
+                  <span class="value">{cpu.performancePerKrona}</span>
+                  <span class="label">per 1000 kr</span>
+                </div>
+              </div>
+            </div>
+            <a href={cpu.url} class="buy-btn">Se pris →</a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section id="gpus" class="component-section">
+      <h3>🎮 Grafikkort</h3>
+      <div class="component-list">
+        {topValue.gpus.map((gpu, i) => (
+          <div class={`component-card ${i === 0 ? 'top-pick' : ''}`}>
+            {i === 0 && <span class="top-badge">TOP VAL</span>}
+            <div class="card-header">
+              <h4>{gpu.name}</h4>
+              <span class="retailer">{gpu.retailer}</span>
+            </div>
+            <div class="card-body">
+              <div class="price">{formatPrice(gpu.price)}</div>
+              <div class="metrics">
+                <div class="metric">
+                  <span class="value">{gpu.performance}</span>
+                  <span class="label">Prestanda</span>
+                </div>
+                <div class="metric highlight">
+                  <span class="value">{gpu.performancePerKrona}</span>
+                  <span class="label">per 1000 kr</span>
+                </div>
+              </div>
+            </div>
+            <a href={gpu.url} class="buy-btn">Se pris →</a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <footer>
+      <p>Data från svenska återförsäljare • Priser uppdateras var 6:e timme</p>
+      <p class="small">Inget binds, alla priser är cirkapris. Kontrollera alltid hos återförsäljare.</p>
+    </footer>
+  </main>
+</Layout>
+
+<style>
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #e5e5e5;
+    background: #0a0a0b;
+    min-height: 100vh;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .accent {
+    color: #22c55e;
+  }
+
+  .tagline {
+    font-size: 1.25rem;
+    color: #888;
+    margin: 0.5rem 0;
+  }
+
+  .updated {
+    font-size: 0.8rem;
+    color: #555;
+    margin-top: 0.5rem;
+  }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .best-value-card {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 1px solid #22c55e33;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    position: relative;
+  }
+
+  .best-value-card.gpu {
+    border-color: #f59e0b33;
+  }
+
+  .best-value-card.gpu .badge {
+    background: #f59e0b22;
+    color: #f59e0b;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: #22c55e22;
+    color: #22c55e;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+
+  .best-value-card h2 {
+    font-size: 1.25rem;
+    margin: 0 0 1rem 0;
+    font-weight: 700;
+  }
+
+  .specs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .performance {
+    color: #888;
+    font-size: 0.9rem;
+    align-self: center;
+  }
+
+  .value-score {
+    text-align: center;
+    padding: 1rem;
+    background: #00000033;
+    border-radius: 0.5rem;
+  }
+
+  .big-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #22c55e;
+  }
+
+  .label {
+    font-size: 0.75rem;
+    color: #666;
+  }
+
+  .categories {
+    margin-bottom: 3rem;
+  }
+
+  .categories h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+
+  .category-card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+  }
+
+  .category-card:hover {
+    border-color: #22c55e;
+    transform: translateY(-2px);
+  }
+
+  .category-card .icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .category-card .name {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .category-card .count {
+    font-size: 0.75rem;
+    color: #666;
+  }
+
+  .component-section {
+    margin-bottom: 3rem;
+  }
+
+  .component-section h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .component-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .component-card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    position: relative;
+  }
+
+  .component-card.top-pick {
+    border-color: #22c55e55;
+    background: linear-gradient(135deg, #111 0%, #1a2e1a 100%);
+  }
+
+  .top-badge {
+    position: absolute;
+    top: -0.5rem;
+    right: 1rem;
+    background: #22c55e;
+    color: #000;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-header h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .retailer {
+    font-size: 0.75rem;
+    color: #666;
+  }
+
+  .card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .metrics {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .metric {
+    text-align: center;
+  }
+
+  .metric .value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .metric.highlight .value {
+    color: #22c55e;
+  }
+
+  .metric .label {
+    font-size: 0.65rem;
+    color: #666;
+  }
+
+  .buy-btn {
+    display: inline-block;
+    background: #222;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+
+  .buy-btn:hover {
+    background: #22c55e;
+    color: #000;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 0;
+    border-top: 1px solid #222;
+    color: #666;
+    font-size: 0.9rem;
+  }
+
+  footer .small {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }
+</style>

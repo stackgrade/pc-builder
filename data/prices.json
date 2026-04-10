@@ -1,0 +1,43 @@
+{
+  "updated": "2026-04-10T10:00:00.000Z",
+  "source": "mock",
+  "components": {
+    "cpus": [
+      { "id": "amd-9800x3d", "name": "AMD Ryzen 9 9800X3D", "price": 5990, "retailer": "Komplett", "url": "#", "performance": 95, "performancePerKrona": 15.9 },
+      { "id": "amd-9600x", "name": "AMD Ryzen 5 9600X", "price": 2890, "retailer": "Komplett", "url": "#", "performance": 82, "performancePerKrona": 28.4 },
+      { "id": "intel-285k", "name": "Intel Core Ultra 9 285K", "price": 6990, "retailer": "CDON", "url": "#", "performance": 94, "performancePerKrona": 13.4 },
+      { "id": "intel-265k", "name": "Intel Core Ultra 7 265K", "price": 4290, "retailer": "Webhallen", "url": "#", "performance": 88, "performancePerKrona": 20.5 },
+      { "id": "amd-7700x", "name": "AMD Ryzen 7 7700X", "price": 3290, "retailer": "Komplett", "url": "#", "performance": 78, "performancePerKrona": 23.7 }
+    ],
+    "gpus": [
+      { "id": "rtx-5090", "name": "NVIDIA RTX 5090", "price": 24990, "retailer": "Komplett", "url": "#", "performance": 100, "performancePerKrona": 4.0 },
+      { "id": "rtx-5080", "name": "NVIDIA RTX 5080", "price": 12990, "retailer": "CDON", "url": "#", "performance": 90, "performancePerKrona": 6.9 },
+      { "id": "rtx-5070ti", "name": "NVIDIA RTX 5070 Ti", "price": 8990, "retailer": "Komplett", "url": "#", "performance": 85, "performancePerKrona": 9.5 },
+      { "id": "rx-9070xt", "name": "AMD RX 9070 XT", "price": 6990, "retailer": "Webhallen", "url": "#", "performance": 83, "performancePerKrona": 11.9 },
+      { "id": "arc-b580", "name": "Intel Arc B580", "price": 2390, "retailer": "Komplett", "url": "#", "performance": 72, "performancePerKrona": 30.1 }
+    ],
+    "motherboards": [
+      { "id": "asus-x670e", "name": "ASUS ROG X670E Hero", "price": 5990, "retailer": "Komplett", "url": "#" },
+      { "id": "msi-b650", "name": "MSI MAG B650 Tomahawk", "price": 1890, "retailer": "CDON", "url": "#" },
+      { "id": "gigabyte-b850", "name": "Gigabyte B850 AORUS", "price": 2190, "retailer": "Webhallen", "url": "#" }
+    ],
+    "ram": [
+      { "id": "ddr5-32-6000", "name": "G.Skill Trident DDR5 32GB 6000MHz", "price": 1190, "retailer": "Komplett", "url": "#" },
+      { "id": "ddr5-64-6000", "name": "Kingston Fury DDR5 64GB 6000MHz", "price": 2290, "retailer": "Webhallen", "url": "#" },
+      { "id": "ddr5-32-6400", "name": "Corsair Vengeance DDR5 32GB 6400MHz", "price": 1390, "retailer": "CDON", "url": "#" }
+    ],
+    "storage": [
+      { "id": "samsung-990pro-2tb", "name": "Samsung 990 Pro 2TB", "price": 1790, "retailer": "Komplett", "url": "#" },
+      { "id": "wd-sn850x-1tb", "name": "WD Black SN850X 1TB", "price": 1190, "retailer": "CDON", "url": "#" },
+      { "id": "crucial-p3-2tb", "name": "Crucial P3 Plus 2TB", "price": 1290, "retailer": "Webhallen", "url": "#" }
+    ],
+    "cases": [
+      { "id": "fractal-define-7", "name": "Fractal Design Define 7", "price": 1190, "retailer": "Komplett", "url": "#" },
+      { "id": "lian-li-o11", "name": "Lian Li O11 Dynamic EVO", "price": 1390, "retailer": "CDON", "url": "#" }
+    ],
+    "psus": [
+      { "id": "corsair-rm850x", "name": "Corsair RM850x", "price": 1290, "retailer": "Komplett", "url": "#" },
+      { "id": "seasonic-focus-750", "name": "Seasonic Focus GX-750", "price": 1090, "retailer": "Webhallen", "url": "#" }
+    ]
+  }
+}

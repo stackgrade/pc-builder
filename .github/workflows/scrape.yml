@@ -1,0 +1,43 @@
+name: Scrape PC Component Prices
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run scraper
+        run: node scripts/scrape.js
+
+      - name: Commit and push if changed
+        run: |
+          git config --local user.email "bot@pcbuilder.local"
+          git config --local user.name "PC Builder Bot"
+          
+          git add data/prices.json
+          
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update prices $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
