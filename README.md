@@ -1,43 +1,77 @@
-# Astro Starter Kit: Minimal
+# PC Builder SE
 
-```sh
-npm create astro@latest -- --template minimal
+Hitta bästa prestanda per krona för din nästa dator. Jämför priser från svenska återförsäljare.
+
+## Tech Stack
+
+- **Framework:** Astro.js (static output)
+- **Styling:** Vanilla CSS (dark mode)
+- **Data:** JSON via GitHub Actions cron
+- **Hosting:** Free (GitHub Pages / Vercel / Cloudflare Pages)
+- **Scraping:** Node.js + Cheerio (via GitHub Actions)
+
+## Arkitektur
+
+```
+.github/workflows/scrape.yml
+├── Körs var 6:e timme
+├── Scrape:ar svenska återförsäljare
+├── Sparar till data/prices.json
+└── Committar om priserna ändrats
+
+src/pages/index.astro
+├── Läser data/prices.json
+├── Sorterar efter bästa pris/krona
+└── Renderar statisk HTML
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Kom igång
 
-## 🚀 Project Structure
+```bash
+# Installera
+npm install
 
-Inside of your Astro project, you'll see the following folders and files:
+# Utveckling
+npm run dev
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+# Bygga
+npm run build
+
+# Testa scraper (utan att spara)
+npm run scrape
+
+# Förhandsgranska
+npm run preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Deployment
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Cloudflare Pages (rekommenderad - gratis)
 
-Any static assets, like images, can be placed in the `public/` directory.
+1. Pusha till GitHub
+2. Koppla till Cloudflare Pages
+3. Byggkommando: `npm run build`
+4. Output-katalog: `dist`
 
-## 🧞 Commands
+### Vercel (gratis)
 
-All commands are run from the root of the project, from a terminal:
+1. `npm i -g vercel`
+2. `vercel`
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### GitHub Pages
 
-## 👀 Want to learn more?
+1. `npm run build`
+2. Deploya `dist/` mappen
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Framtida features
+
+- [ ] AI-powered build recommendations ("Jag vill spela Cyberpunk för 15k")
+- [ ] Price alerts (notify when GPU drops below X kr)
+- [ ] Affiliate links till återförsäljare
+- [ ] Real scraping från Komplett, CDON, Webhallen, Dustin
+- [ ] Price history charts
+- [ ] Build simulator / configurator
+
+## Licens
+
+MIT
