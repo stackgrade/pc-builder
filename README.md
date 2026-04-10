@@ -1,76 +1,40 @@
 # PC Builder SE
 
-Hitta bästa prestanda per krona för din nästa dator. Jämför priser från svenska återförsäljare.
+**Svensk marknad** — Hitta bästa prestanda per krona för din nästa dator.
+
+👉 **Live:** https://stackgrade.github.io/pc-builder/
+
+## Vad det är
+
+En sajt som jämför PC-komponenter och visar vilken som ger mest prestanda per krona. Priserna hämtas från svenska återförsäljare (Komplett, CDON, Webhallen, Dustin).
 
 ## Tech Stack
 
 - **Framework:** Astro.js (static output)
+- **Språk:** Svenska
 - **Styling:** Vanilla CSS (dark mode)
-- **Data:** JSON via GitHub Actions cron
-- **Hosting:** Free (GitHub Pages / Vercel / Cloudflare Pages)
-- **Scraping:** Node.js + Cheerio (via GitHub Actions)
+- **Data:** JSON (scrapad via GitHub Actions)
+- **Hosting:** GitHub Pages ($0)
 
 ## Arkitektur
 
 ```
-.github/workflows/scrape.yml
-├── Körs var 6:e timme
-├── Scrape:ar svenska återförsäljare
-├── Sparar till data/prices.json
-└── Committar om priserna ändrats
-
-src/pages/index.astro
-├── Läser data/prices.json
-├── Sorterar efter bästa pris/krona
-└── Renderar statisk HTML
-```
-
-## Kom igång
-
-```bash
-# Installera
-npm install
-
-# Utveckling
-npm run dev
-
-# Bygga
-npm run build
-
-# Testa scraper (utan att spara)
-npm run scrape
-
-# Förhandsgranska
-npm run preview
+src/pages/index.astro    ← UI (Astro static)
+data/prices.json        ← Priser (uppdateras var 6:e timme)
+.github/workflows/      ← Scraping cron job
 ```
 
 ## Deployment
 
-### Cloudflare Pages (rekommenderad - gratis)
+GitHub Pages: https://stackgrade.github.io/pc-builder/
 
-1. Pusha till GitHub
-2. Koppla till Cloudflare Pages
-3. Byggkommando: `npm run build`
-4. Output-katalog: `dist`
+## Features (kommande)
 
-### Vercel (gratis)
-
-1. `npm i -g vercel`
-2. `vercel`
-
-### GitHub Pages
-
-1. `npm run build`
-2. Deploya `dist/` mappen
-
-## Framtida features
-
-- [ ] AI-powered build recommendations ("Jag vill spela Cyberpunk för 15k")
-- [ ] Price alerts (notify when GPU drops below X kr)
-- [ ] Affiliate links till återförsäljare
-- [ ] Real scraping från Komplett, CDON, Webhallen, Dustin
-- [ ] Price history charts
-- [ ] Build simulator / configurator
+- [ ] AI build-förslag ("Jag vill spela Cyberpunk för 15k")
+- [ ] Riktiga priser från svenska återförsäljare
+- [ ] Affiliate links
+- [ ] Price history
+- [ ] Build configurator
 
 ## Licens
 
