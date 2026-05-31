@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0b"/>
+      <stop offset="100%" stop-color="#1a1a1b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="rgba(34,197,94,0.15)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <ellipse cx="600" cy="100" rx="500" ry="200" fill="url(#glow)"/>
+  <!-- PC Chip icon -->
+  <g transform="translate(150, 180)">
+    <rect x="0" y="0" width="120" height="120" rx="16" fill="rgba(34,197,94,0.1)" stroke="rgba(34,197,94,0.3)" stroke-width="2"/>
+    <rect x="20" y="20" width="80" height="80" rx="8" fill="rgba(34,197,94,0.15)" stroke="rgba(34,197,94,0.4)" stroke-width="1.5"/>
+    <line x1="35" y1="60" x2="85" y2="60" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
+    <line x1="50" y1="40" x2="50" y2="80" stroke="#22c55e" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <line x1="60" y1="40" x2="60" y2="80" stroke="#22c55e" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <line x1="70" y1="40" x2="70" y2="80" stroke="#22c55e" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  </g>
+  <!-- Title -->
+  <text x="320" y="250" font-family="system-ui, -apple-system, sans-serif" font-size="72" font-weight="900" fill="url(#accent)">
+    PC BUILDER SE
+  </text>
+  <text x="320" y="320" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="rgba(255,255,255,0.6)" font-weight="300">
+    Hitta bästa prestanda per krona
+  </text>
+  <!-- Stats line -->
+  <rect x="320" y="350" width="600" height="1" fill="rgba(255,255,255,0.1)"/>
+  <text x="320" y="400" font-family="system-ui, -apple-system, sans-serif" font-size="22" fill="rgba(255,255,255,0.5)">
+    Automatisk optimering · Svenska priser · 4 prissegment
+  </text>
+  <!-- Metric cards -->
+  <rect x="800" y="180" width="250" height="56" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <text x="820" y="208" font-family="system-ui, -apple-system, sans-serif" font-size="16" fill="rgba(255,255,255,0.4)">Performance Score</text>
+  <text x="820" y="230" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="800" fill="#22c55e">Brute-force optimal</text>
+</svg>
