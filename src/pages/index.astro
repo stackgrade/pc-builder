@@ -418,6 +418,129 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
       max-width: 280px;
       line-height: 1.5;
     }
+
+    /* Configurator styles */
+    .config-mode .component-card {
+      cursor: pointer;
+    }
+    .configurator-active {
+      border-color: var(--c-green-border-40) !important;
+      box-shadow: 0 0 20px rgba(34,197,94,0.1);
+    }
+    .configurator-panel { display: none; }
+    .config-mode .configurator-panel { display: block; }
+    .configurator-picker {
+      position: absolute;
+      z-index: 30;
+      inset: 0;
+      display: none;
+      overflow-y: auto;
+      background: var(--c-card);
+      border: 1px solid var(--c-border-08);
+      border-radius: 16px;
+      padding: 1rem;
+    }
+    .configurator-picker.open { display: block; }
+    .configurator-picker-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      min-height: 44px;
+      border: 1px solid transparent;
+    }
+    .configurator-picker-item:hover {
+      background: var(--c-green-bg-10);
+      border-color: var(--c-green-border-30);
+    }
+    .configurator-picker-item.selected {
+      background: var(--c-green-bg-20);
+      border-color: var(--c-green-border-40);
+    }
+    .configurator-picker-item.selected .pick-check {
+      color: var(--c-green-text);
+    }
+    .configurator-picker-item .comp-name {
+      font-size: 0.8125rem;
+      color: var(--c-text-80);
+      font-weight: 500;
+      line-height: 1.3;
+      flex: 1;
+      min-width: 0;
+    }
+    .configurator-picker-item .comp-price {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--c-text);
+      white-space: nowrap;
+      margin-left: 0.75rem;
+    }
+    .configurator-picker-item .comp-ppk {
+      font-size: 0.6875rem;
+      color: var(--c-text-40);
+      white-space: nowrap;
+      margin-left: 0.5rem;
+    }
+    .configurator-picker-item .comp-warn {
+      font-size: 0.6875rem;
+      color: #f59e0b;
+      margin-left: 0.5rem;
+    }
+    .configurator-close-picker {
+      position: sticky;
+      top: 0;
+      float: right;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--c-glass-strong);
+      border: 1px solid var(--c-border-08);
+      cursor: pointer;
+      color: var(--c-text-50);
+      font-size: 1.125rem;
+      z-index: 2;
+    }
+    .configurator-close-picker:hover {
+      background: var(--c-green-bg-10);
+      color: var(--c-green-text);
+    }
+    .configurator-total {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem;
+      border-radius: 16px;
+      background: var(--c-glass-strong);
+      border: 1px solid var(--c-green-border-20);
+      margin-top: 1rem;
+    }
+    .configurator-total .total-item { text-align: center; }
+    .configurator-total .total-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .configurator-total .total-label {
+      font-size: 0.6875rem;
+      color: var(--c-text-40);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .config-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      display: none;
+    }
+    .config-backdrop.open { display: block; }
   </style>
 
   <main class="max-w-6xl mx-auto px-5 py-8 overflow-x-hidden">
@@ -642,6 +765,74 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
                   </svg>
                 </div>
                 <span class="text-sm c-text-50">Alla komponenter är kompatibla och optimerade för denna build</span>
+              </div>
+
+              <!-- Configurator Toggle -->
+              <div class="flex justify-center mt-5">
+                <button
+                  class="configurator-toggle px-6 py-3 rounded-xl text-sm font-semibold c-green-text glass border border-green-500/30 hover:bg-green-500/10 transition-all duration-300 active:scale-95 touch-manipulation"
+                  data-index={i}
+                  type="button"
+                >
+                  <span class="flex items-center gap-2">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"/>
+                    </svg>
+                    <span>Anpassa komponenter</span>
+                  </span>
+                </button>
+              </div>
+
+              <!-- Configurator Panel (hidden by default) -->
+              <div class="configurator-panel mt-6" data-index={i}>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 configurator-components" data-index={i} data-budget={priceClasses[i]}>
+                  {Object.entries(build.components).map(([key, comp]) => {
+                    const meta = componentMeta[key] || { label: key, shortLabel: key };
+                    return (
+                      <div class="component-card configurator-slot p-3 relative" data-slot={key} data-index={i}>
+                        <div class="flex items-center gap-2 mb-2">
+                          <span class="text-xs c-green-text-60 font-semibold uppercase tracking-wider">{meta.shortLabel}</span>
+                          <button
+                            class="configurator-pick-btn ml-auto w-7 h-7 rounded-lg flex items-center justify-center text-xs c-text-40 hover:c-green-text hover:bg-green-500/10 transition-all"
+                            data-slot={key}
+                            data-index={i}
+                            type="button"
+                            aria-label={`Välj ${meta.label}`}
+                          >⇄</button>
+                        </div>
+                        <p class="text-xs font-medium c-text-80 leading-snug configurator-comp-name" data-slot={key} data-index={i}>{comp.name}</p>
+                        <div class="flex items-center justify-between mt-1">
+                          <span class="text-sm font-bold c-text configurator-comp-price" data-slot={key} data-index={i}>{formatPrice(comp.price)}</span>
+                          <span class="text-[10px] c-text-30 configurator-comp-ppk" data-slot={key} data-index={i}>{comp.performancePerKrona}/1000kr</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <!-- Configurator total bar -->
+                <div class="configurator-total">
+                  <div class="total-item">
+                    <div class="total-value c-text configurator-total-price">{formatPrice(build.totalPrice)}</div>
+                    <div class="total-label">Totalpris</div>
+                  </div>
+                  <div class="total-item">
+                    <div class="total-value c-green-text configurator-total-perf">{build.performance}</div>
+                    <div class="total-label">Poäng</div>
+                  </div>
+                  <div class="total-item">
+                    <div class="total-value c-text-80 configurator-total-ppk">{build.performancePerKrona}</div>
+                    <div class="total-label">/1000kr</div>
+                  </div>
+                </div>
+
+                <div class="flex justify-center mt-3">
+                  <button
+                    class="configurator-cancel px-4 py-2 rounded-lg text-xs font-medium c-text-50 glass border c-border-06 hover:c-text-80 hover:border-c-border-08 transition-all"
+                    data-index={i}
+                    type="button"
+                  >Återställ</button>
+                </div>
               </div>
             </div>
           </div>
@@ -914,6 +1105,8 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
   </main>
 
   <script id="history-data" type="application/json">{JSON.stringify(componentHistory)}</script>
+  <script id="components-catalog" type="application/json">{JSON.stringify(components)}</script>
+  <script id="config-data" type="application/json">{JSON.stringify({ socketToRamType, psuRecommendations, priceClasses, budgetLabels, tierDescriptions, formatPrice: formatPrice.toString() })}</script>
 
   <script>
     // Client-side budget switching
@@ -1161,5 +1354,339 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
         });
       }
     }
+  </script>
+
+  <script>
+    // Build Configurator — interactive component swapping
+    (function() {
+      'use strict';
+
+      // Parse embedded data
+      const catalogEl = document.getElementById('components-catalog');
+      const configDataEl = document.getElementById('config-data');
+      if (!catalogEl || !configDataEl) return;
+
+      const components = JSON.parse(catalogEl.textContent || '{}');
+      const configMeta = JSON.parse(configDataEl.textContent || '{}');
+      const { socketToRamType, psuRecommendations, priceClasses } = configMeta;
+
+      // Category -> plural key mapping
+      const catKey = { cpu: 'cpus', gpu: 'gpus', ram: 'ram', motherboard: 'motherboards', storage: 'storage', case: 'cases', psu: 'psus' };
+
+      // Component icons inline SVG (matching original design)
+      const icons = {
+        cpu: '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z"/></svg>',
+        gpu: '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-6.75a2.25 2.25 0 012.25-2.25h18a2.25 2.25 0 012.25 2.25v6.75"/></svg>',
+        ram: '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 5.25h-16.5m16.5 0v10.5a2.25 2.25 0 01-2.25 2.25h-11.5a2.25 2.25 0 01-2.25-2.25V5.25m16.5 0v10.5a2.25 2.25 0 002.25 2.25h-11.5a2.25 2.25 0 00-2.25 2.25V5.25m16.5 0H3.75"/></svg>',
+        storage: '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 9a.75.75 0 00-.75.75v9a.75.75 0 00.75.75h19.5a.75.75 0 00.75-.75V9a.75.75 0 00-.75-.75H2.25zM2.25 6a.75.75 0 00-.75.75v6c0 .414.336.75.75.75h19.5a.75.75 0 00.75-.75V6.75A.75.75 0 0021.75 6H2.25z"/></svg>',
+        motherboard: '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5M4.5 15.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 002.25-2.25V6.75a2.25 2.25 0 00-2.25-2.25H6.75A2.25 2.25 0 004.5 6.75v10.5a2.25 2.25 0 002.25 2.25zm.75-12h9v9h-9v-9z"/></svg>',
+        case: '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z"/></svg>',
+        psu: '<svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>',
+      };
+
+      function fmtPrice(p) { return p.toLocaleString('sv-SE') + ' kr'; }
+
+      // Current selections state per build: { index: { cpu: {...}, gpu: {...}, ... } }
+      const selections = {};
+
+      // Store originals on init
+      function storeOriginals(buildIndex, buildComponents) {
+        if (!selections[buildIndex]) selections[buildIndex] = {};
+        // Only store if not already set (keep across toggle toggles)
+        if (Object.keys(selections[buildIndex]).length === 0) {
+          Object.entries(buildComponents).forEach(([slot, comp]) => {
+            selections[buildIndex][slot] = { ...comp };
+          });
+        }
+      }
+
+      function getSlotItems(slot) {
+        const key = catKey[slot] || slot + 's';
+        return components[key] || [];
+      }
+
+      // Calculate total performance for a set of components
+      function calcPerformance(comps) {
+        return Math.round(
+          (comps.cpu?.performance || 0) * 0.25 +
+          (comps.gpu?.performance || 0) * 0.45 +
+          (comps.ram?.performance || 50) * 0.08 +
+          (comps.storage?.performance || 50) * 0.07 +
+          (comps.motherboard?.performance || 50) * 0.10 +
+          (comps.psu?.performance || 50) * 0.05
+        );
+      }
+
+      function calcTotalPrice(comps) {
+        return (comps.cpu?.price || 0) + (comps.gpu?.price || 0) + (comps.ram?.price || 0) +
+               (comps.storage?.price || 0) + (comps.motherboard?.price || 0) +
+               (comps.case?.price || 0) + (comps.psu?.price || 0);
+      }
+
+      function recalcForBuild(buildIndex) {
+        const s = selections[buildIndex];
+        if (!s) return;
+        const totalPrice = calcTotalPrice(s);
+        const perf = calcPerformance(s);
+        const ppk = totalPrice > 0 ? Math.round((perf / totalPrice) * 1000 * 10) / 10 : 0;
+
+        // Update total display
+        const panel = document.querySelector(`.configurator-panel[data-index="${buildIndex}"]`);
+        if (!panel) return;
+        const priceEl = panel.querySelector('.configurator-total-price');
+        const perfEl = panel.querySelector('.configurator-total-perf');
+        const ppkEl = panel.querySelector('.configurator-total-ppk');
+        if (priceEl) priceEl.textContent = fmtPrice(totalPrice);
+        if (perfEl) perfEl.textContent = String(perf);
+        if (ppkEl) ppkEl.textContent = String(ppk);
+
+        // Also update the main build card display?
+        // Update each slot display
+        const slots = panel.querySelectorAll('.configurator-slot');
+        slots.forEach(el => {
+          const slot = el.getAttribute('data-slot');
+          const comp = s[slot];
+          if (!comp) return;
+          const nameEl = el.querySelector('.configurator-comp-name');
+          const priceEl2 = el.querySelector('.configurator-comp-price');
+          const ppkEl2 = el.querySelector('.configurator-comp-ppk');
+          if (nameEl) nameEl.textContent = comp.name;
+          if (priceEl2) priceEl2.textContent = fmtPrice(comp.price);
+          if (ppkEl2) ppkEl2.textContent = (comp.performancePerKrona || 0) + '/1000kr';
+        });
+      }
+
+      function openPicker(buildIndex, slot) {
+        const panel = document.querySelector(`.configurator-panel[data-index="${buildIndex}"]`);
+        if (!panel) return;
+        const s = selections[buildIndex];
+        if (!s) return;
+        const current = s[slot];
+        if (!current) return;
+
+        const budget = priceClasses[buildIndex];
+        const items = getSlotItems(slot);
+
+        // Compute "locked" cost of other slots
+        let lockedCost = 0;
+        Object.entries(s).forEach(([key, comp]) => {
+          if (key !== slot) lockedCost += comp.price;
+        });
+        const remainingBudget = budget - lockedCost;
+
+        // Close any existing picker
+        const existing = panel.querySelector('.configurator-picker');
+        if (existing) existing.remove();
+
+        const compMeta = {
+          cpu: { label: 'CPU', icon: icons.cpu },
+          gpu: { label: 'GPU', icon: icons.gpu },
+          ram: { label: 'RAM', icon: icons.ram },
+          storage: { label: 'SSD', icon: icons.storage },
+          motherboard: { label: 'Moderkort', icon: icons.motherboard },
+          case: { label: 'Chassi', icon: icons.case },
+          psu: { label: 'PSU', icon: icons.psu },
+        };
+        const meta = compMeta[slot] || { label: slot.toUpperCase(), icon: icons.cpu };
+
+        // Check compatibility hints
+        function getCompatWarnings(comp) {
+          const warns = [];
+          if (slot === 'cpu') {
+            if (s.motherboard && comp.socket !== s.motherboard.socket) warns.push('⚡ Socket mismatch');
+          }
+          if (slot === 'motherboard') {
+            if (s.cpu && comp.socket !== s.cpu.socket) warns.push('⚡ Socket mismatch');
+          }
+          if (slot === 'ram') {
+            const cpu = s.cpu;
+            const neededType = socketToRamType[cpu?.socket || ''] || 'DDR4';
+            if (comp.ramType && comp.ramType !== neededType) warns.push('⚡ RAM type mismatch (' + neededType + ' krävs)');
+          }
+          if (slot === 'psu') {
+            const gpu = s.gpu;
+            const minWatt = psuRecommendations[gpu?.name || ''] || 650;
+            if ((comp.wattage || 0) < minWatt) warns.push('⚠ Only ' + comp.wattage + 'W (need ≥' + minWatt + 'W)');
+          }
+          return warns;
+        }
+
+        const picker = document.createElement('div');
+        picker.className = 'configurator-picker open';
+        picker.innerHTML = `
+          <div class="flex items-center gap-2 mb-3">
+            <div class="icon-container w-8 h-8 flex items-center justify-center c-green-text flex-shrink-0">${meta.icon}</div>
+            <span class="font-bold c-text text-sm">Välj ${meta.label}</span>
+            <span class="text-xs c-text-30 ml-auto">Budget: ${fmtPrice(budget)}</span>
+          </div>
+          <button class="configurator-close-picker" type="button" aria-label="Stäng">✕</button>
+          <div style="max-height:280px;overflow-y:auto;">
+            ${items.map(comp => {
+              const isSelected = current.id === comp.id;
+              const overBudget = comp.price > remainingBudget && !isSelected;
+              const warns = getCompatWarnings(comp);
+              return `
+                <div class="configurator-picker-item ${isSelected ? 'selected' : ''} ${overBudget ? 'opacity-50' : ''}"
+                     data-id="${comp.id}"
+                     role="button" tabindex="0">
+                  <div class="flex items-center gap-3 flex-1 min-w-0">
+                    <span class="pick-check text-sm ${isSelected ? 'c-green-text' : 'c-text-30'}">${isSelected ? '✓' : ''}</span>
+                    <span class="comp-name">${comp.name}</span>
+                    ${warns.length ? warns.map(w => `<span class="comp-warn">${w}</span>`).join('') : ''}
+                  </div>
+                  <div class="flex items-center gap-2 flex-shrink-0">
+                    ${overBudget ? '<span class="text-xs text-red-400">+${' + fmtPrice(comp.price - remainingBudget) + '}</span>' : ''}
+                    <span class="comp-price">${fmtPrice(comp.price)}</span>
+                    <span class="comp-ppk">${comp.performancePerKrona || 0}/1k</span>
+                  </div>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+
+        // Insert picker inside the slot card
+        const slotEl = panel.querySelector(`.configurator-slot[data-slot="${slot}"]`);
+        if (slotEl) {
+          slotEl.style.position = 'relative';
+          slotEl.appendChild(picker);
+        }
+
+        // Handle selection
+        function selectItem(el) {
+          const id = el.getAttribute('data-id');
+          const compObj = items.find(c => c.id === id);
+          if (!compObj) return;
+          selections[buildIndex][slot] = { ...compObj };
+          recalcForBuild(buildIndex);
+          picker.remove();
+          // Re-open needed for compatibility check refresh
+        }
+
+        picker.querySelectorAll('.configurator-picker-item').forEach(item => {
+          item.addEventListener('click', () => selectItem(item));
+          item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectItem(item); }
+          });
+        });
+
+        // Close button
+        picker.querySelector('.configurator-close-picker')?.addEventListener('click', () => picker.remove());
+
+        // Close on backdrop click (click outside picker but inside slot)
+        setTimeout(() => {
+          const closer = (e) => {
+            if (!picker.contains(e.target) || e.target.closest('.configurator-close-picker')) {
+              picker.remove();
+              document.removeEventListener('click', closer);
+            }
+          };
+          document.addEventListener('click', closer);
+        }, 100);
+      }
+
+      // Toggle configurator panel
+      function toggleConfigurator(buildIndex) {
+        const panel = document.querySelector(`.configurator-panel[data-index="${buildIndex}"]`);
+        if (!panel) return;
+        const btn = document.querySelector(`.configurator-toggle[data-index="${buildIndex}"]`);
+        const isOpen = panel.style.display !== 'none';
+        panel.style.display = isOpen ? 'none' : 'block';
+        if (btn) {
+          btn.classList.toggle('bg-green-500/10', !isOpen);
+          btn.classList.toggle('border-green-500/50', !isOpen);
+          btn.innerHTML = isOpen
+            ? '<span class="flex items-center gap-2"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495"/></svg><span>Anpassa komponenter</span></span>'
+            : '<span class="flex items-center gap-2"><svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg><span>Stäng konfigurator</span></span>';
+        }
+      }
+
+      // Reset build to original components
+      function resetBuild(buildIndex) {
+        const panel = document.querySelector(`.configurator-panel[data-index="${buildIndex}"]`);
+        if (!panel) return;
+        // Need original build data — re-read from the main build card components
+        const mainSection = document.querySelector(`.build-section[data-index="${buildIndex}"]`);
+        if (!mainSection) return;
+        const compCards = mainSection.querySelectorAll('.component-card');
+        if (!compCards.length) return;
+
+        const s = selections[buildIndex] || {};
+        // Reset each slot from the main display
+        const mainCompNames = [];
+        compCards.forEach(card => {
+          const nameEl = card.querySelector('p.font-medium');
+          const priceEl = card.querySelector('.text-lg.font-bold.c-text');
+          if (nameEl) mainCompNames.push(nameEl.textContent?.trim() || '');
+        });
+
+        // Re-read original components from catalog by name
+        const slotKeys = Object.keys(catKey);
+        compCards.forEach((card, idx) => {
+          if (idx >= slotKeys.length) return;
+          const slot = slotKeys[idx];
+          const name = mainCompNames[idx];
+          if (name) {
+            const items = getSlotItems(slot);
+            const orig = items.find(c => c.name === name);
+            if (orig) s[slot] = { ...orig };
+          }
+        });
+
+        recalcForBuild(buildIndex);
+      }
+
+      // Init
+      document.addEventListener('DOMContentLoaded', () => {
+        // Build sections data for initializing selections
+        const buildSections = document.querySelectorAll('.build-section');
+        buildSections.forEach((section, idx) => {
+          const componentCards = section.querySelectorAll('.component-card');
+          const comps = { cpu: null, gpu: null, ram: null, storage: null, motherboard: null, case: null, psu: null };
+          const slotKeys = Object.keys(comps);
+          componentCards.forEach((card, i) => {
+            if (i >= slotKeys.length) return;
+            const nameEl = card.querySelector('p.font-medium');
+            const priceEl = card.querySelector('.text-lg.font-bold.c-text');
+            if (nameEl) {
+              const name = nameEl.textContent?.trim() || '';
+              const priceText = priceEl?.textContent?.trim() || '';
+              const price = parseInt(priceText.replace(/\s/g, '').replace('kr', '')) || 0;
+              const slot = slotKeys[i];
+              const items = getSlotItems(slot);
+              const found = items.find(c => c.name === name) || items.find(c => c.price === price) || null;
+              if (found) comps[slot] = { ...found };
+            }
+          });
+          storeOriginals(idx, comps);
+        });
+
+        // Toggle buttons
+        document.querySelectorAll('.configurator-toggle').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const idx = parseInt(btn.getAttribute('data-index') || '0');
+            toggleConfigurator(idx);
+          });
+        });
+
+        // Pick buttons
+        document.querySelectorAll('.configurator-pick-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const idx = parseInt(btn.getAttribute('data-index') || '0');
+            const slot = btn.getAttribute('data-slot');
+            openPicker(idx, slot);
+          });
+        });
+
+        // Reset buttons
+        document.querySelectorAll('.configurator-cancel').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const idx = parseInt(btn.getAttribute('data-index') || '0');
+            resetBuild(idx);
+          });
+        });
+      });
+    })();
   </script>
 </Layout>
