@@ -1,0 +1,2346 @@
+{
+  "updated": "2026-05-31T13:41:14.114038",
+  "generated_from": "prices.json snapshot",
+  "snapshots": [
+    {
+      "date": "2026-03-08",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 3291
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 2709
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2528
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1617
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1888
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 26315
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 14518
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 4905
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2334
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 1623
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 6088
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 6660
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 3337
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1082
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 930
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 4208
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 3657
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3688
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 3925
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3060
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 4009
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 3127
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1228
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1067
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 785
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1322
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1045
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 790
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 551
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 411
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 3593
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 2051
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1200
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 627
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 384
+        }
+      ]
+    },
+    {
+      "date": "2026-03-15",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 3205
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 3453
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2802
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1943
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1802
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 26434
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 11323
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 5169
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2248
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 1666
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 6147
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 5900
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 3646
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1236
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 856
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 4000
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 3664
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3356
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 4035
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3742
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 3785
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 2678
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1373
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1077
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 667
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1582
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1237
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 913
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 525
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 438
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 3547
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 1772
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1030
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 520
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 373
+        }
+      ]
+    },
+    {
+      "date": "2026-03-22",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 2917
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 3530
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2981
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1676
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1836
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 24299
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 14417
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 5538
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2241
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 1763
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 6757
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 6231
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 3977
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1315
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 866
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 3843
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 4518
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3601
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 3203
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3161
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 3292
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 3052
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1390
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1165
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 610
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1346
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1346
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 906
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 561
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 437
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 2864
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 2031
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1244
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 554
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 374
+        }
+      ]
+    },
+    {
+      "date": "2026-03-29",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 3269
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 2855
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2667
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1743
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1961
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 27315
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 12229
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 5600
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2200
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 2083
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 7259
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 6317
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 4024
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1222
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 814
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 4422
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 4031
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3840
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 3619
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3148
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 3512
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 2601
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1427
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1302
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 747
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1324
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1060
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 983
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 554
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 358
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 3279
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 1714
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1264
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 585
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 362
+        }
+      ]
+    },
+    {
+      "date": "2026-04-05",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 3141
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 3195
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2565
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1914
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1732
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 23334
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 13107
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 5895
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2226
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 1808
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 7406
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 6878
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 3835
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1195
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 812
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 3889
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 3843
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3665
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 3369
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3361
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 3310
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 3041
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1210
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1301
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 747
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1253
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1118
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 934
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 466
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 365
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 3620
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 1950
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1180
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 585
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 427
+        }
+      ]
+    },
+    {
+      "date": "2026-04-12",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 2951
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 2888
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2671
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1734
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1751
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 26206
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 13469
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 6175
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2186
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 1851
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 6422
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 7160
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 3682
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1112
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 880
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 4083
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 3804
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3401
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 3915
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3549
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 3954
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 2984
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1167
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1316
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 739
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1529
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1298
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 966
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 464
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 398
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 3090
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 1879
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1076
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 535
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 440
+        }
+      ]
+    },
+    {
+      "date": "2026-04-19",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 3014
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 3334
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2687
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1737
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1920
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 27404
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 13131
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 5837
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2229
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 1815
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 7257
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 6752
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 3922
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1248
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 813
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 4220
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 3994
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3839
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 3352
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3915
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 3371
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 2771
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1314
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1231
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 654
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1287
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1281
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 855
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 508
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 408
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 3238
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 1950
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1192
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 596
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 376
+        }
+      ]
+    },
+    {
+      "date": "2026-04-26",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 3280
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 3012
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2661
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1817
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1700
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 24175
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 13571
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 5174
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2372
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 2057
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 7234
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 6145
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 3692
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1140
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 958
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 4433
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 4261
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3509
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 3374
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3805
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 3805
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 3011
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1402
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1223
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 630
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1468
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1148
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 925
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 538
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 373
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 3065
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 1785
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1198
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 527
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 406
+        }
+      ]
+    },
+    {
+      "date": "2026-05-03",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 3269
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 3009
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2769
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1696
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1760
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 26611
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 13709
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 5234
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2361
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 1822
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 6121
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 6937
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 3975
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1145
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 924
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 4186
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 3946
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3310
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 3348
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3812
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 3909
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 2974
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1359
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1206
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 651
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1307
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1153
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 956
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 523
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 422
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 3500
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 1830
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1139
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 514
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 417
+        }
+      ]
+    },
+    {
+      "date": "2026-05-10",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 3332
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 3117
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2758
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1676
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1871
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 26288
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 13871
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 5847
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2520
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 1762
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 6873
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 6490
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 4129
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1241
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 936
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 4336
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 3859
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3739
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 3391
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3782
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 3860
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 2835
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1348
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1183
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 671
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1449
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1144
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 838
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 477
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 389
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 3461
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 2047
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1150
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 560
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 393
+        }
+      ]
+    },
+    {
+      "date": "2026-05-17",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 3349
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 3173
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2860
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1678
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1867
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 23986
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 13741
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 5435
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2273
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 1875
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 6839
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 6494
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 3942
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1192
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 877
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 4192
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 3870
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3686
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 3368
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3783
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 3690
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 3033
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1329
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1215
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 678
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1315
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1214
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 880
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 487
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 416
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 3380
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 1871
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1159
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 543
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 394
+        }
+      ]
+    },
+    {
+      "date": "2026-05-24",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 3090
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 3032
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2688
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1846
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1797
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 26072
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 13151
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 5479
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2402
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 1788
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 6497
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 6599
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 3923
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1210
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 887
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 4126
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 3869
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3582
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 3747
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3706
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 3542
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 2820
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1292
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1207
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 678
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1438
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1222
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 916
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 484
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 386
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 3122
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 1866
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1184
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 570
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 381
+        }
+      ]
+    },
+    {
+      "date": "2026-05-31",
+      "entries": [
+        {
+          "name": "AMD Ryzen 9 9800X3D",
+          "category": "cpus",
+          "price": 3135
+        },
+        {
+          "name": "AMD Ryzen 9 9950X3D",
+          "category": "cpus",
+          "price": 3196
+        },
+        {
+          "name": "Intel Core Ultra 7 265K",
+          "category": "cpus",
+          "price": 2636
+        },
+        {
+          "name": "AMD Ryzen 5 5600X",
+          "category": "cpus",
+          "price": 1794
+        },
+        {
+          "name": "AMD Ryzen 5 3600",
+          "category": "cpus",
+          "price": 1762
+        },
+        {
+          "name": "NVIDIA RTX 5090",
+          "category": "gpus",
+          "price": 24414
+        },
+        {
+          "name": "NVIDIA RTX 5080",
+          "category": "gpus",
+          "price": 13172
+        },
+        {
+          "name": "NVIDIA RTX 5070 Ti",
+          "category": "gpus",
+          "price": 5350
+        },
+        {
+          "name": "Intel Arc B580",
+          "category": "gpus",
+          "price": 2444
+        },
+        {
+          "name": "AMD RX 6600",
+          "category": "gpus",
+          "price": 1936
+        },
+        {
+          "name": "ASUS ROG X670E Hero",
+          "category": "motherboards",
+          "price": 6414
+        },
+        {
+          "name": "ASUS ROG Z890 Maximus",
+          "category": "motherboards",
+          "price": 6604
+        },
+        {
+          "name": "MSI MEG Z890 ACE",
+          "category": "motherboards",
+          "price": 3777
+        },
+        {
+          "name": "ASUS TUF B550-Plus",
+          "category": "motherboards",
+          "price": 1239
+        },
+        {
+          "name": "MSI B450 Tomahawk",
+          "category": "motherboards",
+          "price": 891
+        },
+        {
+          "name": "G.Skill Aegis DDR4 16GB 3600MHz",
+          "category": "ram",
+          "price": 3984
+        },
+        {
+          "name": "Kingston Fury DDR5 64GB 6000MHz",
+          "category": "ram",
+          "price": 3902
+        },
+        {
+          "name": "G.Skill Trident Z5 DDR5 32GB 6000MHz",
+          "category": "ram",
+          "price": 3705
+        },
+        {
+          "name": "Corsair Vengeance DDR5 32GB 6400MHz",
+          "category": "ram",
+          "price": 3578
+        },
+        {
+          "name": "Corsair Vengeance DDR4 32GB 3600MHz",
+          "category": "ram",
+          "price": 3689
+        },
+        {
+          "name": "Samsung 990 Pro 2TB NVMe",
+          "category": "storage",
+          "price": 3727
+        },
+        {
+          "name": "WD Black SN850X 1TB NVMe",
+          "category": "storage",
+          "price": 3082
+        },
+        {
+          "name": "Crucial P3 Plus 2TB NVMe",
+          "category": "storage",
+          "price": 1301
+        },
+        {
+          "name": "Samsung 990 Pro 1TB NVMe",
+          "category": "storage",
+          "price": 1238
+        },
+        {
+          "name": "WD Blue SN580 1TB NVMe",
+          "category": "storage",
+          "price": 714
+        },
+        {
+          "name": "Lian Li O11 Dynamic EVO",
+          "category": "cases",
+          "price": 1404
+        },
+        {
+          "name": "Fractal Design Define 7",
+          "category": "cases",
+          "price": 1213
+        },
+        {
+          "name": "Fractal Design Pop Air",
+          "category": "cases",
+          "price": 899
+        },
+        {
+          "name": "Cooler Master Q300L V2",
+          "category": "cases",
+          "price": 514
+        },
+        {
+          "name": "TecWare Forge M2",
+          "category": "cases",
+          "price": 401
+        },
+        {
+          "name": "Corsair RM850x",
+          "category": "psus",
+          "price": 3408
+        },
+        {
+          "name": "Corsair RM1000x",
+          "category": "psus",
+          "price": 1961
+        },
+        {
+          "name": "be quiet! Straight Power 650W",
+          "category": "psus",
+          "price": 1184
+        },
+        {
+          "name": "EVGA 550 BR",
+          "category": "psus",
+          "price": 537
+        },
+        {
+          "name": "Seasonic Core GM-450",
+          "category": "psus",
+          "price": 390
+        }
+      ]
+    }
+  ]
+}

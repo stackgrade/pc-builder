@@ -40,6 +40,9 @@ jobs:
           # Merge
           python3 scripts/merge_prices.py
       
+      - name: Append to price history
+        run: python3 scripts/append_price_history.py
+      
       - name: Check for changes
         id: git_status
         run: |
@@ -59,7 +62,7 @@ jobs:
       - name: Commit and push changes
         if: steps.git_status.outputs.changed == 'true'
         run: |
-          git add data/prices.json data/prices_scraped.json 2>/dev/null || true
-          git add data/prices.json
+          git add data/prices.json data/prices_scraped.json data/price_history.json 2>/dev/null || true
+          git add data/prices.json data/price_history.json
           git commit -m "Auto-update prices $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push
