@@ -20,9 +20,9 @@
 
 ### 🔴 HIGH
 
-- [ ] **mobile-first-layout** — Ensure 320px responsive baseline. Currently the tier selector grid (grid-cols-2 lg:grid-cols-4), build cards, and component cards may overflow on small screens. Fix: use `min-width:0` on grid children, `overflow-x:hidden` on containers, clamp font sizes, ensure `touch-targets ≥44px` for tier buttons and stat cards. Verify with `npm run build`.
+- [x] **mobile-first-layout** — Ensure 320px responsive baseline. Fixed viewport meta (initial-scale=1.0), hero heading responsive sizing, overflow-x-hidden prevention, touch targets ≥44px on tier buttons, grid min-width:0 safety, CSS overrides for sub-375px/639px. ✅ Sprint 75
 
-- [ ] **dark-mode-persistence** — Already dark by default, but add `prefers-color-scheme` listener + localStorage override so users on light OS can switch. Add a small 🌙/☀️ toggle in the nav area. CSS variables need `[data-theme="light"]` overrides for readable light mode.
+- [x] **dark-mode-persistence** — CSS custom properties for light/dark theme, `prefers-color-scheme` listener + localStorage persistence, 🌙/☀️ toggle button in fixed top-right nav. CSS variables replace all hardcoded background/text/border colors. Light theme overrides for readable mode. ✅ Sprint 76
 
 - [ ] **seo-meta-tags** — Add full Open Graph (og:title, og:description, og:image, og:url, og:type), Twitter Card, and canonical URL to Layout.astro. Currently only has a basic `<meta name="description">`.
 
@@ -47,7 +47,7 @@
 - [ ] **service-worker-caching** — Basic offline support by caching the static assets and latest price data. Register a service worker that enables repeat visits even without network.
 
 ## 📊 Stats
-- build_count: 20
+- build_count: 22
 - pages: 1 (index.astro)
 - deploy: GitHub Pages (push to main → auto-deploy via workflow)
-- pending: 11 items
+- pending: 10 items

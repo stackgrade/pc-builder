@@ -8,16 +8,152 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="sv">
+<html lang="sv" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content="PC Builder SE - Hitta bästa prestanda per krona för din nästa dator. Jämför priser från svenska återförsäljare." />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/pc-builder/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <style>
+      :root {
+        --c-bg: #0a0a0b;
+        --c-glass: rgba(255,255,255,0.03);
+        --c-glass-strong: rgba(255,255,255,0.05);
+        --c-card: rgba(15,15,15,0.95);
+        --c-stat: rgba(30,30,30,0.8);
+        --c-summary: rgba(20,20,20,0.9);
+        --c-summary-active: rgba(20,30,20,0.95);
+        --c-text: #fff;
+        --c-text-90: rgba(255,255,255,0.9);
+        --c-text-80: rgba(255,255,255,0.8);
+        --c-text-70: rgba(255,255,255,0.7);
+        --c-text-50: rgba(255,255,255,0.5);
+        --c-text-40: rgba(255,255,255,0.4);
+        --c-text-30: rgba(255,255,255,0.3);
+        --c-text-25: rgba(255,255,255,0.25);
+        --c-border-10: rgba(255,255,255,0.1);
+        --c-border-08: rgba(255,255,255,0.08);
+        --c-border-06: rgba(255,255,255,0.06);
+        --c-bg-white-5: rgba(255,255,255,0.05);
+        --c-perf-bar: rgba(255,255,255,0.1);
+        --c-divider: rgba(255,255,255,0.1);
+        --c-built-card-bg: linear-gradient(145deg, rgba(15,15,15,0.95) 0%, rgba(5,5,5,0.98) 100%);
+        --c-built-card-border-top: linear-gradient(90deg, transparent, rgba(34,197,94,0.3), transparent);
+        --c-hero-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34,197,94,0.15) 0%, transparent 60%);
+        --c-green-bg-10: rgba(34,197,94,0.1);
+        --c-green-bg-20: rgba(34,197,94,0.2);
+        --c-green-border-20: rgba(34,197,94,0.2);
+        --c-green-border-30: rgba(34,197,94,0.3);
+        --c-green-border-40: rgba(34,197,94,0.4);
+        --c-green-text: #22c55e;
+        --c-green-text-60: rgba(34,197,94,0.6);
+        --c-green-text-70: rgba(34,197,94,0.7);
+        --c-gradient-text: linear-gradient(135deg, #fff 0%, #22c55e 50%, #4ade80 100%);
+      }
+
+      [data-theme='light'] {
+        --c-bg: #f3f4f6;
+        --c-glass: rgba(255,255,255,0.8);
+        --c-glass-strong: rgba(255,255,255,0.9);
+        --c-card: rgba(255,255,255,0.92);
+        --c-stat: rgba(255,255,255,0.95);
+        --c-summary: rgba(250,250,250,0.95);
+        --c-summary-active: rgba(240,255,240,0.98);
+        --c-text: #111827;
+        --c-text-90: rgba(17,24,39,0.9);
+        --c-text-80: rgba(17,24,39,0.8);
+        --c-text-70: rgba(17,24,39,0.7);
+        --c-text-50: rgba(17,24,39,0.5);
+        --c-text-40: rgba(17,24,39,0.4);
+        --c-text-30: rgba(17,24,39,0.3);
+        --c-text-25: rgba(17,24,39,0.25);
+        --c-border-10: rgba(0,0,0,0.1);
+        --c-border-08: rgba(0,0,0,0.08);
+        --c-border-06: rgba(0,0,0,0.06);
+        --c-bg-white-5: rgba(0,0,0,0.03);
+        --c-perf-bar: rgba(0,0,0,0.08);
+        --c-divider: rgba(0,0,0,0.1);
+        --c-built-card-bg: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(245,245,245,0.98) 100%);
+        --c-built-card-border-top: linear-gradient(90deg, transparent, rgba(34,197,94,0.3), transparent);
+        --c-hero-gradient: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34,197,94,0.08) 0%, transparent 60%);
+        --c-green-bg-10: rgba(34,197,94,0.08);
+        --c-green-bg-20: rgba(34,197,94,0.12);
+        --c-green-border-20: rgba(34,197,94,0.15);
+        --c-green-border-30: rgba(34,197,94,0.25);
+        --c-green-border-40: rgba(34,197,94,0.35);
+        --c-green-text: #16a34a;
+        --c-green-text-60: rgba(22,163,74,0.6);
+        --c-green-text-70: rgba(22,163,74,0.7);
+        --c-gradient-text: linear-gradient(135deg, #111827 0%, #16a34a 50%, #22c55e 100%);
+      }
+
+      body {
+        background: var(--c-bg);
+        color: var(--c-text);
+        min-height: 100vh;
+      }
+    </style>
   </head>
-  <body class="bg-dark text-gray-200 min-h-screen">
+  <body>
+    <!-- Theme toggle button -->
+    <div class="fixed top-4 right-4 z-50" id="theme-toggle-wrapper">
+      <button
+        id="theme-toggle"
+        class="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-110"
+        aria-label="Toggle theme"
+        style="background: var(--c-glass-strong); border: 1px solid var(--c-border-08);"
+      >
+        <span id="theme-icon" class="text-lg">🌙</span>
+      </button>
+    </div>
+
     <slot />
+
+    <script>
+      (function() {
+        const STORAGE_KEY = 'pcb_theme';
+
+        function getPreferredTheme() {
+          const stored = localStorage.getItem(STORAGE_KEY);
+          if (stored === 'light' || stored === 'dark') return stored;
+          return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        }
+
+        function applyTheme(theme) {
+          document.documentElement.setAttribute('data-theme', theme);
+          const icon = document.getElementById('theme-icon');
+          if (icon) icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+          localStorage.setItem(STORAGE_KEY, theme);
+        }
+
+        function init() {
+          const theme = getPreferredTheme();
+          applyTheme(theme);
+
+          const btn = document.getElementById('theme-toggle');
+          if (btn) {
+            btn.addEventListener('click', () => {
+              const current = document.documentElement.getAttribute('data-theme');
+              applyTheme(current === 'dark' ? 'light' : 'dark');
+            });
+          }
+
+          // Listen for system preference changes
+          window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+            if (!localStorage.getItem(STORAGE_KEY)) {
+              applyTheme(e.matches ? 'light' : 'dark');
+            }
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init);
+        } else {
+          init();
+        }
+      })();
+    </script>
   </body>
 </html>
