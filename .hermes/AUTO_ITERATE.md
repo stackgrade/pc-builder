@@ -38,16 +38,16 @@
 
 - [x] **custom-404-page** — Branded 404 page with glass-morphism design, large gradient "404" heading, friendly Swedish copy, search box (stores query via sessionStorage + form GET redirect), "Till byggaren" and "Bläddra komponenter" buttons, dark/light theme support, mobile-first touch targets ≥44px. ✅ Sprint 27
 
-- [ ] **build-configurator** — Allow manual component selection within budget constraints. Let users swap individual parts (CPU, GPU, etc.) and see updated total price and performance score. Interactive client-side logic.
+- [x] **build-configurator** — Interactive manual component selection within budget. "Anpassa komponenter" toggle opens a configurator panel per build. Each slot has ⇄ picker showing all alternatives with price/compatibility warnings. Real-time total price, performance, and perf/krona updates. Budget constraint visualization. Reset to original build. ✅ Sprint 28
 
-- [ ] **ai-build-suggestion-banner** — "Beskriv ditt användningsområde" banner that helps users pick the right budget tier based on their use case (gaming, workstation, budget, etc.).
+- [x] **ai-build-suggestion-banner** — "Beskriv ditt användningsområde" banner that helps users pick the right budget tier based on their use case (gaming, workstation, budget, etc.).
 
 - [ ] **retailer-affiliate-links** — Format Komplett.se URLs with affiliate tracking parameters. Add rel="sponsored" to outbound links for SEO compliance.
 
 - [ ] **service-worker-caching** — Basic offline support by caching the static assets and latest price data. Register a service worker that enables repeat visits even without network.
 
 ## 📊 Stats
-- build_count: 27
+- build_count: 29
 - pages: 1 (index.astro)
 - deploy: GitHub Pages (push to main → auto-deploy via workflow)
-- pending: 4 items
+- pending: 3 items
