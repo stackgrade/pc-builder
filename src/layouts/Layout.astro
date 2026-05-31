@@ -148,6 +148,15 @@ const {
 
     <slot />
 
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/pc-builder/sw.js', { scope: '/pc-builder/' });
+        });
+      }
+    </script>
+
     <script>
       (function() {
         const STORAGE_KEY = 'pcb_theme';
