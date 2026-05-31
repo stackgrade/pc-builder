@@ -349,6 +349,75 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
       .retailer-btn { min-height: 36px; display: inline-flex; align-items: center; }
     }
     .grid > * { min-width: 0; }
+
+    /* Skeleton shimmer animation */
+    @keyframes shimmer {
+      0% { background-position: -200px 0; }
+      100% { background-position: calc(200px + 100%) 0; }
+    }
+    .skeleton {
+      background: linear-gradient(90deg, var(--c-bg-white-5) 25%, var(--c-glass) 50%, var(--c-bg-white-5) 75%);
+      background-size: 200px 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+      border-radius: 12px;
+    }
+    .skeleton-card {
+      min-height: 120px;
+      border: 1px solid var(--c-border-06);
+      background: var(--c-glass);
+    }
+    .skeleton-card.shimmer {
+      background: linear-gradient(90deg, var(--c-glass) 25%, var(--c-glass-strong) 50%, var(--c-glass) 75%);
+      background-size: 200px 100%;
+      animation: shimmer 1.5s ease-in-out infinite;
+    }
+    .skeleton-text {
+      height: 14px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .skeleton-text.w-30 { width: 30%; }
+    .skeleton-text.w-50 { width: 50%; }
+    .skeleton-text.w-70 { width: 70%; }
+    .skeleton-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+    }
+
+    /* Empty state styling */
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+    .empty-state-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: var(--c-green-bg-10);
+      border: 1px solid var(--c-green-border-20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      color: var(--c-green-text-60);
+    }
+    .empty-state-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--c-text-80);
+      margin-bottom: 0.5rem;
+    }
+    .empty-state-desc {
+      font-size: 0.875rem;
+      color: var(--c-text-40);
+      max-width: 280px;
+      line-height: 1.5;
+    }
   </style>
 
   <main class="max-w-6xl mx-auto px-5 py-8 overflow-x-hidden">
@@ -387,7 +456,7 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
     <!-- STATS BAR -->
     <section class="mb-10">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="stats-bar">
-        {builds.map((build, i) => {
+        {builds.length > 0 ? builds.map((build, i) => {
           const colors = getPerfColor(build.performancePerKrona);
           return (
             <div class={`stat-card p-4 text-center card-hover build-stats ${i === defaultBuildIndex ? 'visible' : ''}`} data-index={i}>
@@ -401,7 +470,17 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
               <div class="text-sm font-semibold c-text-80 mt-2">{formatPrice(build.totalPrice)}</div>
             </div>
           );
-        })}
+        }) : (
+          /* Skeleton placeholders for stats when no data yet */
+          [1,2,3,4].map(() => (
+            <div class="stat-card p-4 skeleton-card shimmer">
+              <div class="skeleton skeleton-text w-50" style="height:28px;margin:0 auto 8px"></div>
+              <div class="skeleton skeleton-text w-70" style="height:12px;margin:0 auto 12px"></div>
+              <div class="skeleton" style="height:4px;width:80%;margin:0 auto 12px"></div>
+              <div class="skeleton skeleton-text w-40" style="height:16px;margin:0 auto"></div>
+            </div>
+          ))
+        )}
       </div>
     </section>
 
@@ -416,7 +495,7 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
       </div>
 
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4" id="tier-selector">
-        {priceClasses.map((budget, i) => {
+        {builds.length > 0 ? priceClasses.map((budget, i) => {
           const build = builds[i];
           const isSelected = i === defaultBuildIndex;
           const colors = build ? getPerfColor(build.performancePerKrona) : null;
@@ -465,13 +544,31 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
               )}
             </div>
           );
-        })}
+        }) : (
+          /* Skeleton placeholders for tier selector */
+          [1,2,3,4].map((_, i) => (
+            <div class="tier-btn rounded-2xl p-5 glass skeleton-card shimmer">
+              <div class="flex items-start justify-between mb-4">
+                <div>
+                  <div class="skeleton skeleton-text w-50" style="height:36px"></div>
+                </div>
+                <div class="skeleton skeleton-text w-30" style="height:28px;width:40px"></div>
+              </div>
+              <div class="skeleton skeleton-text w-40" style="height:16px;margin-bottom:6px"></div>
+              <div class="skeleton skeleton-text w-70" style="height:12px"></div>
+              <div class="mt-4 pt-4 border-t c-border-06">
+                <div class="skeleton skeleton-text w-50" style="height:16px"></div>
+                <div class="skeleton" style="height:4px;width:100%;margin-top:8px;border-radius:2px"></div>
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </section>
 
     <!-- MAIN BUILD DISPLAY - one per budget -->
     <section class="mb-10" id="builds-container">
-      {builds.map((build, i) => {
+      {builds.length > 0 ? builds.map((build, i) => {
         const buildBudget = priceClasses[i];
         const colors = getPerfColor(build.performancePerKrona);
         return (
@@ -549,7 +646,17 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
             </div>
           </div>
         );
-      })}
+        }) : (
+          <div class="empty-state glass rounded-2xl p-8">
+            <div class="empty-state-icon">
+              <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
+              </svg>
+            </div>
+            <div class="empty-state-title">Inga builds tillgängliga</div>
+            <div class="empty-state-desc">Kunde inte beräkna några datorkonfigurationer just nu. Prisdatat kan vara tillfälligt otillgängligt. Försök igen senare.</div>
+          </div>
+        )}
     </section>
 
     <!-- ALL BUILDS GRID -->
@@ -559,7 +666,7 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
         <span class="text-xs c-text-30">Klicka för att byta</span>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="all-builds-grid">
-        {priceClasses.map((budget, i) => {
+        {builds.length > 0 ? priceClasses.map((budget, i) => {
           const build = builds[i];
           if (!build) return null;
           const isCurrent = i === defaultBuildIndex;
@@ -597,7 +704,17 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
               </div>
             </div>
           );
-        })}
+        }) : (
+          <div class="empty-state" style="grid-column:1/-1">
+            <div class="empty-state-icon">
+              <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/>
+              </svg>
+            </div>
+            <div class="empty-state-title">Inga prissegment</div>
+            <div class="empty-state-desc">Build-data är för närvarande inte tillgänglig.</div>
+          </div>
+        )}
       </div>
     </section>
 
@@ -667,7 +784,7 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
         return (
           <div class={`comp-grid ${cat === 'cpu' ? 'visible' : ''}`} data-category={cat}>
             <div class="grid gap-3" style="grid-template-columns: repeat(auto-fill, minmax(min(280px,100%), 1fr))">
-              {sorted.map(item => {
+              {sorted.length > 0 ? sorted.map(item => {
                 const ppk = item.performancePerKrona || 0;
                 const perf = item.performance || 0;
                 const ppkColor = ppk >= 20 ? 'c-green-text' : ppk >= 10 ? 'text-amber-400' : 'text-orange-400';
@@ -710,7 +827,17 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
                     </a>
                   </div>
                 );
-              })}
+              }) : (
+                <div class="empty-state" style="grid-column:1/-1">
+                  <div class="empty-state-icon">
+                    <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/>
+                    </svg>
+                  </div>
+                  <div class="empty-state-title">Inga komponenter</div>
+                  <div class="empty-state-desc">Denna kategori har inga komponenter listade just nu.</div>
+                </div>
+              )}
             </div>
           </div>
         );
@@ -724,22 +851,45 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
           <p class="text-xs c-text-40 uppercase tracking-widest mb-1">Prisutveckling</p>
           <h2 class="text-2xl font-bold c-text">Prishistorik</h2>
         </div>
-        <select
-          id="history-select"
-          class="px-3 py-2 rounded-xl text-sm font-medium c-text-80 glass border c-border-06 focus:outline-none focus:border-green-500/40 transition-colors max-w-xs w-full sm:w-auto"
-          style="background: var(--c-card); min-height: 44px;"
-        >
-          {historyComponentNames.map(name => (
-            <option value={name} class="c-text">{name}</option>
-          ))}
-        </select>
+        {historyComponentNames.length > 0 ? (
+          <select
+            id="history-select"
+            class="px-3 py-2 rounded-xl text-sm font-medium c-text-80 glass border c-border-06 focus:outline-none focus:border-green-500/40 transition-colors max-w-xs w-full sm:w-auto"
+            style="background: var(--c-card); min-height: 44px;"
+          >
+            {historyComponentNames.map(name => (
+              <option value={name} class="c-text">{name}</option>
+            ))}
+          </select>
+        ) : (
+          <span class="text-xs c-text-30">Ingen historik tillgänglig</span>
+        )}
       </div>
 
       <div class="glass rounded-2xl p-4 sm:p-6 lg:p-8" id="chart-container">
-        <svg id="price-chart" class="w-full" viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" style="min-height: 240px;"></svg>
-        <div id="chart-no-data" class="hidden text-center py-16">
-          <p class="c-text-40 text-sm">Välj en komponent ovan för att se prishistorik</p>
-        </div>
+        {historyComponentNames.length > 0 ? (
+          <>
+            <svg id="price-chart" class="w-full" viewBox="0 0 800 320" preserveAspectRatio="xMidYMid meet" style="min-height: 240px;"></svg>
+            <div id="chart-no-data" class="hidden empty-state">
+              <div class="empty-state-icon">
+                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H6.75m9.75 0h3.75M6.75 21h-1.5m1.5 0v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21M3 13.5h9l-1.5-9H4.5l-1.5 9zm0 0V21"/>
+                </svg>
+              </div>
+              <p class="empty-state-desc">Välj en komponent ovan för att se prishistorik</p>
+            </div>
+          </>
+        ) : (
+          <div class="empty-state">
+            <div class="empty-state-icon">
+              <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9.75h16.5M3.75 9.75v10.5a2.25 2.25 0 002.25 2.25h12a2.25 2.25 0 002.25-2.25V9.75M3.75 9.75V6a2.25 2.25 0 012.25-2.25h12A2.25 2.25 0 0121 6v3.75"/>
+              </svg>
+            </div>
+            <div class="empty-state-title">Ingen prishistorik</div>
+            <div class="empty-state-desc">Prishistorikdata är inte tillgänglig för tillfället. Komponentpriser samlas in dagligen via GitHub Actions.</div>
+          </div>
+        )}
       </div>
 
       <div class="flex items-center justify-center gap-4 mt-4 text-xs c-text-30">
