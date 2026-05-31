@@ -42,12 +42,14 @@
 
 - [x] **ai-build-suggestion-banner** — "Beskriv ditt användningsområde" banner that helps users pick the right budget tier based on their use case (gaming, workstation, budget, etc.).
 
-- [ ] **retailer-affiliate-links** — Format Komplett.se URLs with affiliate tracking parameters. Add rel="sponsored" to outbound links for SEO compliance.
+### [COMPLETED] retailer-affiliate-links
+- **Description:** 🔗 Sprint 30 — Added affiliate tracking to all Komplett.se outbound links. Created `affiliateUrl()` helper that appends `?partner=pcbuilder-se` to Komplett.se URLs. Updated 2 retailer button locations (build section + component browser) to use the helper. Added `rel="noopener sponsored"` to all outbound retailer links for SEO compliance. 36 affiliate URLs generated across all builds. Build ✅ (2 pages, 1.61s, 0 errors).
+- **Priority:** 🟢 LOW
 
 - [ ] **service-worker-caching** — Basic offline support by caching the static assets and latest price data. Register a service worker that enables repeat visits even without network.
 
 ## 📊 Stats
-- build_count: 29
+- build_count: 30
 - pages: 1 (index.astro)
 - deploy: GitHub Pages (push to main → auto-deploy via workflow)
-- pending: 3 items
+- pending: 1 item

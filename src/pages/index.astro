@@ -123,6 +123,24 @@ const defaultBuildIndex = 1; // 10000 budget
 const formatPrice = (price: number) => `${price.toLocaleString('sv-SE')} kr`;
 const formatDate = (dateStr: string) => new Date(dateStr).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' });
 
+// Affiliate tracking configuration
+// Change this to your actual affiliate partner ID from your affiliate network
+const AFFILIATE_PARAM = 'partner=pcbuilder-se';
+const AFFILIATE_DOMAIN = 'www.komplett.se';
+
+function affiliateUrl(url: string): string {
+  if (!url || url === '#') return '#';
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname === AFFILIATE_DOMAIN) {
+      parsed.searchParams.set('partner', 'pcbuilder-se');
+    }
+    return parsed.toString();
+  } catch {
+    return url;
+  }
+}
+
 const budgetLabels: Record<number, string> = { 7000: 'Entry', 10000: 'Budget', 15000: 'Mid', 20000: 'High-End' };
 const tierDescriptions: Record<number, string> = {
   7000: 'För alla som börjar',
@@ -859,9 +877,9 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
                       </div>
                       <p class="text-sm font-medium c-text-90 mb-3 leading-snug">{comp.name}</p>
                       <a
-                        href={comp.url !== '#' ? comp.url : '#'}
+                        href={affiliateUrl(comp.url)}
                         target="_blank"
-                        rel="noopener"
+                        rel="noopener sponsored"
                         class="retailer-btn inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg c-green-text"
                       >
                         <span>{comp.retailer}</span>
@@ -1122,9 +1140,9 @@ const componentMeta: Record<string, { label: string; shortLabel: string }> = {
                       {extra.length > 0 && <span class="text-[10px] c-text-30 truncate max-w-[140px]" title={extra.join(' • ')}>{extra.join(' • ')}</span>}
                     </div>
                     <a
-                      href={item.url !== '#' ? item.url : '#'}
+                      href={affiliateUrl(item.url)}
                       target="_blank"
-                      rel="noopener"
+                      rel="noopener sponsored"
                       class="retailer-btn inline-flex items-center justify-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg c-green-text mt-auto"
                     >
                       <span>Köp på {item.retailer || 'Komplett'}</span>
