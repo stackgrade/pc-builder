@@ -32,11 +32,11 @@
 
 - [x] **price-history-chart** — Track price history from GitHub Actions scrape data. Added SVG line chart with 13-week trend visualization, dropdown component selector, auto-detected trend direction (green ↓/red ↑). ✅ Sprint 25
 
-- [ ] **loading-and-empty-states** — Handle empty data (no components/price data available) gracefully. Currently assumes data always exists. Add skeleton loaders and informative empty state messages.
+- [x] **loading-and-empty-states** — CSS skeleton shimmer animation (.skeleton, .skeleton-card, .skeleton-text), themed empty state system (.empty-state with icons/titles/descriptions). Stats bar & tier selector show shimmer placeholders when builds empty. Build sections & component categories show informative empty states with SVG icons. Price history handles SSR-empty (no history data at all) and JS-empty (selected component has <2 datapoints) with distinct messages. Build ✅ (1 page, 1.54s, 0 errors). ✅ Sprint 26
 
 ### 🟢 LOW
 
-- [ ] **custom-404-page** — Create branded 404 page with search box and link back to main tool. Follow the existing glass-morphism design pattern.
+- [x] **custom-404-page** — Branded 404 page with glass-morphism design, large gradient "404" heading, friendly Swedish copy, search box (stores query via sessionStorage + form GET redirect), "Till byggaren" and "Bläddra komponenter" buttons, dark/light theme support, mobile-first touch targets ≥44px. ✅ Sprint 27
 
 - [ ] **build-configurator** — Allow manual component selection within budget constraints. Let users swap individual parts (CPU, GPU, etc.) and see updated total price and performance score. Interactive client-side logic.
 
@@ -47,7 +47,7 @@
 - [ ] **service-worker-caching** — Basic offline support by caching the static assets and latest price data. Register a service worker that enables repeat visits even without network.
 
 ## 📊 Stats
-- build_count: 25
+- build_count: 27
 - pages: 1 (index.astro)
 - deploy: GitHub Pages (push to main → auto-deploy via workflow)
-- pending: 9 items
+- pending: 4 items

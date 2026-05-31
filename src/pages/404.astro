@@ -1,0 +1,150 @@
+---
+import Layout from '../layouts/Layout.astro';
+const BASE_PATH = '/pc-builder';
+---
+
+<Layout
+  title="404 — Sidan finns inte | PC Builder SE"
+  description="Sidan du letade efter finns inte. Hitta bästa prestanda per krona för din nästa dator."
+  canonical={`${BASE_PATH}/404`}
+>
+  <div class="min-h-screen flex items-center justify-center px-4 py-20" style="background: var(--c-bg);">
+    <!-- Background glow -->
+    <div class="fixed inset-0 pointer-events-none" style="background: var(--c-hero-gradient);"></div>
+
+    <div class="relative w-full max-w-lg">
+      <!-- Glass card -->
+      <div
+        class="rounded-2xl p-8 sm:p-10 text-center border"
+        style="
+          background: var(--c-card);
+          border-color: var(--c-border-08);
+          box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        "
+      >
+        <!-- 404 heading with gradient text -->
+        <h1
+          class="text-8xl sm:text-9xl font-black leading-none mb-2 select-none"
+          style="
+            background: var(--c-gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          "
+        >
+          404
+        </h1>
+
+        <!-- Subtle decorative line -->
+        <div class="w-16 h-0.5 mx-auto mb-6 rounded-full" style="background: var(--c-green-border-30);"></div>
+
+        <!-- Friendly message -->
+        <p class="text-lg sm:text-xl font-medium mb-2" style="color: var(--c-text-80);">
+          Oj, sidan hittades inte
+        </p>
+        <p class="text-sm sm:text-base mb-8" style="color: var(--c-text-50);">
+          Länken du följde kanske är trasig, eller så har sidan flyttats.
+        </p>
+
+        <!-- Search box: stores query in sessionStorage and redirects to / -->
+        <form id="search-form" class="mb-8" action="/pc-builder/" method="GET">
+          <div class="relative">
+            <input
+              id="search-input"
+              type="text"
+              name="q"
+              placeholder="Sök efter komponenter..."
+              class="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all duration-200"
+              style="
+                background: var(--c-glass-strong);
+                color: var(--c-text);
+                border: 1px solid var(--c-border-08);
+                min-height: 44px;
+              "
+              autofocus
+            />
+            <button
+              type="submit"
+              class="absolute right-1.5 top-1/2 -translate-y-1/2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 hover:scale-105"
+              style="
+                background: var(--c-green-bg-20);
+                color: var(--c-green-text);
+                border: 1px solid var(--c-green-border-20);
+                min-height: 36px;
+              "
+            >
+              Sök
+            </button>
+          </div>
+        </form>
+
+        <!-- Action links -->
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a
+            href="/pc-builder/"
+            class="inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition-all duration-200 hover:scale-105"
+            style="
+              background: var(--c-green-bg-20);
+              color: var(--c-green-text);
+              border: 1px solid var(--c-green-border-30);
+              min-height: 44px;
+            "
+          >
+            <span class="text-base">🔧</span>
+            Till byggaren
+          </a>
+          <a
+            href="/pc-builder/#components"
+            class="inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-medium transition-all duration-200 hover:scale-105"
+            style="
+              background: var(--c-glass-strong);
+              color: var(--c-text-70);
+              border: 1px solid var(--c-border-08);
+              min-height: 44px;
+            "
+          >
+            <span class="text-base">📦</span>
+            Bläddra komponenter
+          </a>
+        </div>
+
+        <!-- Tips section -->
+        <div
+          class="mt-8 rounded-xl p-4 text-left text-xs leading-relaxed"
+          style="background: var(--c-glass); border: 1px solid var(--c-border-06); color: var(--c-text-40);"
+        >
+          <p class="font-medium mb-1" style="color: var(--c-text-50);">💡 Tips</p>
+          <p>
+            Prova att söka efter en komponent ovan, eller gå tillbaka till
+            <a href="/pc-builder/" style="color: var(--c-green-text); text-decoration: none;">byggaren</a>
+            och välj en budgetnivå för att få den bästa PC:n för dina pengar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const form = document.getElementById('search-form');
+      const input = document.getElementById('search-input');
+
+      if (form && input) {
+        form.addEventListener('submit', function(e) {
+          e.preventDefault();
+          const query = input.value.trim();
+          if (query) {
+            // Store search query in sessionStorage for the main page to pick up
+            sessionStorage.setItem('pcb_404_search', query);
+            window.location.href = '/pc-builder/';
+          }
+        });
+
+        // Auto-focus the search input on page load
+        setTimeout(function() {
+          input.focus();
+        }, 100);
+      }
+    })();
+  </script>
+</Layout>
