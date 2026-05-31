@@ -28,9 +28,9 @@
 
 ### 🟡 MEDIUM
 
-- [ ] **component-browser** — Add individual component browsing tab/section showing all CPUs, GPUs, RAM sticks sorted by performance per krona with retailer links. Useful for users who want to see all options, not just the optimal build.
+- [x] **component-browser** — Add individual component browsing tab/section showing all CPUs, GPUs, RAM sticks sorted by performance per krona with retailer links. Useful for users who want to see all options, not just the optimal build. ✅ Sprint 24
 
-- [ ] **price-history-chart** — Track price history from GitHub Actions scrape data. Add a simple chart showing price trends for popular components. Use a lightweight chart approach (CSS/SVG bars or canvas).
+- [x] **price-history-chart** — Track price history from GitHub Actions scrape data. Added SVG line chart with 13-week trend visualization, dropdown component selector, auto-detected trend direction (green ↓/red ↑). ✅ Sprint 25
 
 - [ ] **loading-and-empty-states** — Handle empty data (no components/price data available) gracefully. Currently assumes data always exists. Add skeleton loaders and informative empty state messages.
 
@@ -47,7 +47,7 @@
 - [ ] **service-worker-caching** — Basic offline support by caching the static assets and latest price data. Register a service worker that enables repeat visits even without network.
 
 ## 📊 Stats
-- build_count: 23
+- build_count: 25
 - pages: 1 (index.astro)
 - deploy: GitHub Pages (push to main → auto-deploy via workflow)
-- pending: 10 items
+- pending: 9 items
