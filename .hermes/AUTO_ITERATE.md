@@ -24,7 +24,7 @@
 
 - [x] **dark-mode-persistence** — CSS custom properties for light/dark theme, `prefers-color-scheme` listener + localStorage persistence, 🌙/☀️ toggle button in fixed top-right nav. CSS variables replace all hardcoded background/text/border colors. Light theme overrides for readable mode. ✅ Sprint 76
 
-- [ ] **seo-meta-tags** — Add full Open Graph (og:title, og:description, og:image, og:url, og:type), Twitter Card, and canonical URL to Layout.astro. Currently only has a basic `<meta name="description">`.
+- [x] **seo-meta-tags** — Full Open Graph (og:title, og:description, og:image, og:url, og:type, og:site_name, og:locale), Twitter Card (summary_large_image), canonical URL. Created og-image.svg. Layout.astro supports per-page overrides via Props (description, image, type, canonical, twitterCard). ✅ Sprint 77
 
 ### 🟡 MEDIUM
 
@@ -47,7 +47,7 @@
 - [ ] **service-worker-caching** — Basic offline support by caching the static assets and latest price data. Register a service worker that enables repeat visits even without network.
 
 ## 📊 Stats
-- build_count: 22
+- build_count: 23
 - pages: 1 (index.astro)
 - deploy: GitHub Pages (push to main → auto-deploy via workflow)
 - pending: 10 items
